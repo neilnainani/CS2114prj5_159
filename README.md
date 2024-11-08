@@ -10,7 +10,7 @@ Team Pledge:
 Noah Chen noahc20@vt.edu (360)-684-0953
 Chloe Walker cwalk@vt.edu (703)-554-0533
 Farhan Uddin farhanuddin@vt.edu (571)-497-9094
-Neil Naninani neilnanani@vt.edu (614)-619-5456
+Neil Nainani neilnainani@vt.edu (614)-619-5456
 
 All team members will: 
     -abide by university policies and procedures, including the Student Code of Conduct, Principles of Community, and the Honor Code
