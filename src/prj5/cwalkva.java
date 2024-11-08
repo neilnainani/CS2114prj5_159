@@ -1,4 +1,4 @@
-package src.prj5;
+package prj5;
 
 //Neil:
 public class cwalkva {
