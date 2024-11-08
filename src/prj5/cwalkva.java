@@ -6,10 +6,13 @@ public class cwalkva {
 
         System.out.println("Glad to be on your team Noah");
 
-    }
-    public static void main(String[] args) {
+
         System.out.println("Farhan- Glad to be on your team, from chloe walker"
             + "Neil trying merge statement.");
 
-} 
+        System.out.println("Glad to be on your team, from chloe walker");
+        System.out.println("Noah- Glad to be on your team, from chloe");
+        System.out.println("Farhan- Glad to be on your team, from chloe walker");
+    }
+
 }
