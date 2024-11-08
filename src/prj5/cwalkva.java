@@ -4,7 +4,11 @@ package prj5;
 public class cwalkva {
     public static void main(String[] args) {
 
-        System.out.println("Glad to be on your team");
+        System.out.println("Glad to be on your team Noah");
 
     }
+    public static void main(String[] args) {
+        System.out.println("Glad to be on your team, from chloe walker");
+
+} 
 }
