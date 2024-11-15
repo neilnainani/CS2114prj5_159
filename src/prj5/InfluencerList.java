@@ -83,4 +83,32 @@ public class InfluencerList {
         }
     }
 
+    /**
+     * @return InfluencerList of the influencer stats for January
+     */
+    public DLinkedList<Influencer> getJanList() {
+        return JanList;
+    }
+
+    /**
+     * @return InfluencerList of the influencer stats for February
+     */
+    public DLinkedList<Influencer> getFebList() {
+        return FebList;
+    }
+
+    /**
+     * @return InfluencerList of the influencer stats for March
+     */
+    public DLinkedList<Influencer> getMarchList() {
+        return MarchList;
+    }
+
+    /**
+     * @return InfluencerList of the influencer stats for all 3 months
+     */
+    public DLinkedList<Influencer> getCombinedList() {
+        return CombinedList;
+    }
+
 }
