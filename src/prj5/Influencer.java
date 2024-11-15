@@ -7,7 +7,7 @@
 
 package prj5;
 
-public class Influencer<T> implements Comparable<T> {
+public class Influencer implements Comparable<T> {
 
     public Influencer() {
         // TODO Auto-generated constructor stub
