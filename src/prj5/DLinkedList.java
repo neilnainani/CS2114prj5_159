@@ -69,7 +69,7 @@ public class DLinkedList<T> {
     }
     
     public DLinkedList() {
-        super(null, null);
+        clear();
     }
     
     public boolean add(T data) {
