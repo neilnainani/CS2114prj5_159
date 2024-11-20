@@ -48,7 +48,7 @@ public class InfluencerList {
             DLinkedList<Influencer> currList;
             if (i == 0) {
                 currList = JanList;
-            } 
+            }
             else if (i == 1) {
                 currList = FebList;
             }
@@ -59,18 +59,24 @@ public class InfluencerList {
                 boolean found = false;
                 Influencer currInfl = currList.get(k);
                 for (int j = 0; j < CombinedList.getNumberOfEntries(); j++) {
-                    if (CombinedList.get(j).getUsername().equals(currInfl.getUsername()) {
-                        //Adds together different months if same Username
-                        Influencer newInfl = new Influencer("Combined", currList.getUsername(), currList.getChannelName(),
-                            currInfl.getLikes() + CombinedList.get(j).getLikes(), 
-                            currInfl.getFollowers() + CombinedList.get(j).getFollowers(),
-                            currInfl.getComments() + CombinedList.get(j).getComments(), 
-                            currInfl.getViews() + CombinedList.get(j).getViews());
+                    if (CombinedList.get(j).getUsername()
+                        .equals(currInfl.getUsername())) {
+                        // Adds together different months if same Username
+                        Influencer newInfl = new Influencer("Combined",
+                            currInfl.getUsername(), currInfl.getChannelName(),
+                            currInfl.getLikes()
+                                + CombinedList.get(j).getLikes(),
+                            currInfl.getFollowers()
+                                + CombinedList.get(j).getFollowers(),
+                            currInfl.getComments()
+                                + CombinedList.get(j).getComments(),
+                            currInfl.getViews()
+                                + CombinedList.get(j).getViews());
                         CombinedList.add(newInfl);
                         found = true;
                         break;
                     }
-                    //If influencer not already in CombinedList
+                    // If influencer not already in CombinedList
                     if (!found) {
                         Influencer newInfl = new Influencer("Combined",
                             currInfl.getUsername(), currInfl.getChannelName(),
@@ -78,9 +84,10 @@ public class InfluencerList {
                             currInfl.getComments(), currInfl.getViews());
                         CombinedList.add(newInfl);
                     }
-                } 
+                }
             }
         }
+        return CombinedList;
     }
 
     /**

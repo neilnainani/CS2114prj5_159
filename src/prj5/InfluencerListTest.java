@@ -50,7 +50,7 @@ public class InfluencerListTest extends student.TestCase {
      * Tests getFebList method
      */
     public void testGetFebList() {
-        assertEquals(testList.getJanList(), FebList);
+        assertEquals(testList.getFebList(), FebList);
     }
 
     /**
