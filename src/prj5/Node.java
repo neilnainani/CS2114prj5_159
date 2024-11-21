@@ -98,5 +98,5 @@ public class Node<T>
     public void setPrev(Node<T> p) {
         prev = p;
     }
-    }
+}
 
