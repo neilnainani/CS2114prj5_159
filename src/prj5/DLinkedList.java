@@ -53,7 +53,7 @@ public class DLinkedList<T> {
     /**
      * Adds a new Node to the top of the list
      * @param data the data in the node to be added to the list
-     * @return boolean returns true at all times due to no restrictions on size
+     * @return boolean returns true if data is not null, false otherwise
      */
     public boolean add(T data) {
         if (data == null) {
@@ -200,6 +200,9 @@ public class DLinkedList<T> {
      * @return boolean returns true if successful, false otherwise
      */
     public boolean remove(int i) {
+        if (numberOfEntries == 0) {
+            return false;
+        }
         if (i == 0) {
             firstNode.setData(null);
             firstNode = firstNode.getNext();
@@ -208,7 +211,7 @@ public class DLinkedList<T> {
         }
         if (i == numberOfEntries - 1) {
             lastNode.setData(null);
-            lastNode = lastNode.getNext();
+            lastNode = lastNode.getPrev();
             numberOfEntries--;
             return true;
         }
@@ -252,9 +255,23 @@ public class DLinkedList<T> {
     /**
      * Adds a node to the front or top of the list
      * @param n the node to be added
+     * @return boolean true if the add was successful, false otherwise
      */
-    public void addToFront(Node<T> n) {
-        add(0, n.getData());
+    public boolean addToFront(Node<T> n) {
+        if (n.getData() == null) {
+            return false;
+        }
+        if (numberOfEntries == 0) {
+            firstNode = n;
+            lastNode = firstNode;
+        }
+        if (firstNode != null || firstNode.getData() != null) {
+            firstNode.setPrev(n);
+            n.setNext(firstNode);
+        }
+        firstNode = n;
+        numberOfEntries++;
+        return true;
     }
     
     /**
@@ -262,7 +279,7 @@ public class DLinkedList<T> {
      * @param n the node to be added
      */
     public void addToBack(Node<T> n) {
-        add(numberOfEntries, n.getData());
+        add(n.getData());
     }
     
     /**
@@ -295,11 +312,15 @@ public class DLinkedList<T> {
      */
 
     public boolean contains(T d) {
+        if (isEmpty()) {
+            return false;
+        }
         Node<T> curr = firstNode;
         for (int i = 0; i < numberOfEntries; i++) {
             if (curr.getData().equals(d)) {
                 return true;
             }
+            curr = curr.getNext();
         }
         return false;
     }

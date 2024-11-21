@@ -143,6 +143,113 @@ public class DLinkedListTest extends TestCase
      * This method tests the remove() method
      */
     public void testRemove() {
+        assertEquals(true, bigA.remove(0));
+        assertEquals("sport1", bigA.getFirstNode().getData());
+        assertEquals(true, smallB.remove(2));
+        assertEquals("swimming", smallB.getLastNode().getData());
+        assertEquals(false, smallA.remove(10));
+        smallA.add("3");
+        assertEquals(true, smallA.remove(1));
+        assertEquals("gymnastics", smallA.get(1));
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the getNumberOfEntries()
+     */
+    public void testGetNumberOfEntries() {
+        assertEquals(0, emptyA.getNumberOfEntries());
+        assertEquals(100, bigA.getNumberOfEntries());
+        assertEquals(3, smallB.getNumberOfEntries());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the getFirstNode() method
+     */
+    public void testGetFirstNode() {
+        assertEquals(smallA.getFirstNode().getData(), "soccer");
+        assertEquals(null, emptyA.getFirstNode().getData());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the getLastNode() method
+     */
+    public void testGetLastNode() {
+        assertEquals(smallA.getLastNode().getData(), "gymnastics");
+        assertEquals(null, emptyB.getLastNode().getData());
+        emptyA.add("one");
+        assertEquals(emptyA.getLastNode(), emptyA.getLastNode());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the addToFront() method
+     */
+    public void testAddToFront() {
+        Node<String> n = new Node<String>("front", null, null);
+        assertEquals(true, bigA.addToFront(n));
+        assertEquals(bigA.getFirstNode().getData(), "front");
+        assertEquals(101, bigA.getNumberOfEntries());
+        assertEquals(true, emptyA.addToFront(n));
+        assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
+        assertEquals(1, emptyA.getNumberOfEntries());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the addToBack() method
+     */
+    public void testAddToBack() {
+        Node<String> n = new Node<String>("back", null, null);
+        bigA.addToBack(n);
+        assertEquals(bigA.getLastNode().getData(), "back");
+        assertEquals(101, bigA.getNumberOfEntries());
+        emptyA.addToBack(n);
+        assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
+        assertEquals(1, emptyA.getNumberOfEntries());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the removeFront() method
+     */
+    public void testRemoveFront() {
+        bigA.removeFront();
+        assertEquals(bigA.getFirstNode().getData(), "sport1");
+        assertEquals(99, bigA.getNumberOfEntries());
+        emptyA.removeFront();
+        assertEquals(0, emptyA.getNumberOfEntries());
+    }
+    
+    /**
+     * This method tests the removeBack() method
+     */
+    public void testRemoveBack() {
+        bigA.removeBack();
+        assertEquals(bigA.getLastNode().getData(), "sport98");
+        assertEquals(99, bigA.getNumberOfEntries());
+        emptyA.removeBack();
+        assertEquals(0, emptyA.getNumberOfEntries());
+    }
+    
+    /**
+     * This method tests the isEmpty() method
+     */
+    public void testIsEmpty() {
+        assertEquals(true, emptyA.isEmpty());
+        assertEquals(false, bigB.isEmpty());
+    }
+    /**
+     * This method tests the contains() method
+     */
+    public void testContains() {
+        assertEquals(true, bigB.contains("sport56"));
+        assertEquals(false, bigA.contains("false"));
+        assertEquals(false, emptyA.contains(null));
+        assertEquals(true, smallB.contains("swimming"));
+        assertEquals(false, smallA.contains("sports"));
         
     }
 }
