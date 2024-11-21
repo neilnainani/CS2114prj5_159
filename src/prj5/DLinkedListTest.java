@@ -64,7 +64,7 @@ public class DLinkedListTest extends TestCase
 
         bigB = new DLinkedList<String>();
         for (int i = 0; i < 100; i++) {
-            bigB.add("sport" + i);
+            bigB.add("sport" + (99 - i));
         }
         
         // to be explicit
@@ -84,8 +84,8 @@ public class DLinkedListTest extends TestCase
         assertEquals(emptyA.getNumberOfEntries(), 1);
         emptyA.add("w");
         emptyA.add(1, "e");
-        assertEquals(emptyA.getFirstNode().getData(), "w");
-        assertEquals(emptyA.getLastNode().getData(), "q");
+        assertEquals(emptyA.getLastNode().getData(), "w");
+        assertEquals(emptyA.getFirstNode().getData(), "q");
         assertEquals(emptyA.getNumberOfEntries(), 3);
         assertEquals(emptyA.getFirstNode().getNext().getData(), "e");
         assertEquals(emptyA.add(5, "false"), false);
@@ -103,11 +103,46 @@ public class DLinkedListTest extends TestCase
         assertEquals(null, bigB.getLastNode().getData());
     }
     
+    // ----------------------------------------------------------
+    /**
+     * This method tests the equals() method
+     */
     public void testEquals() {
         assertEquals(true, smallA.equals(smallB));
         assertEquals(false, smallA.equals(nullString));
         int i = 0;
         assertEquals(false, smallA.equals(i));
         assertEquals(true, smallB.equals(smallB));
+        bigB.add("cool");
+        bigA.add("not cool");
+        assertEquals(false, bigB.equals(bigA));
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the get() method
+     */
+    public void testGet() {
+        assertEquals("gymnastics", smallA.get(2));
+        assertEquals("sport56", bigA.get(56));
+        assertEquals(null, bigA.get(-1));
+        assertEquals(null, smallA.get(5));
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the indexOf() method
+     */
+    public void testIndexOf() {
+        assertEquals(bigA.indexOf("sport56"), 56);
+        assertEquals(smallA.indexOf("swimming"), 1);
+        assertEquals(bigB.indexOf("not in the list"), -1);
+    }
+    
+    /**
+     * This method tests the remove() method
+     */
+    public void testRemove() {
+        
     }
 }

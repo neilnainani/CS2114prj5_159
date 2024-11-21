@@ -59,7 +59,7 @@ public class DLinkedList<T> {
         if (data == null) {
             return false;
         }
-        Node<T> newNode = new Node<T>(data);
+        Node<T> newNode = new Node<T>(data, null, null);
         if (numberOfEntries == 0) {
             firstNode = newNode;
             lastNode = firstNode;
@@ -89,7 +89,6 @@ public class DLinkedList<T> {
         if (numberOfEntries == 0) {
             add(data);
         }
-        Node<T> newNode = new Node<T>(data);
         Node<T> currentNode = firstNode;
         for (int i = 0; i < index; i++) {
             currentNode = currentNode.getNext();
