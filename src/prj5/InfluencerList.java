@@ -24,9 +24,9 @@ public class InfluencerList {
      * Constructor for InfluencerList Sets Jan, Feb, and March lists and creates
      * a combined list
      * 
-     * @param JList January List
-     * @param FList February List
-     * @param MList March List
+     * @param OList  First List
+     * @param TwList Second List
+     * @param TrList Third List
      */
     public InfluencerList(DLinkedList<Influencer> OList,
         DLinkedList<Influencer> TwList, DLinkedList<Influencer> TrList) {

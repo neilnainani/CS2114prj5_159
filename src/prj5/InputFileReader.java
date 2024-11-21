@@ -37,7 +37,6 @@ public class InputFileReader {
         String[] monthLists = new String[3];
         int monthListsSize = 0;
         while (inStream.hasNextLine()) {
-
             String line = inStream.nextLine().replaceAll(" ", "");
             String[] values = line.split(",");
             String month = values[0];
@@ -52,6 +51,7 @@ public class InputFileReader {
                 for (int i = 0; i < MONTHS.length; i++) {
                     if (month.equals(MONTHS[i])) {
                         monthLists[monthListsSize] = month;
+                        monthListsSize++;
                     }
                 }
             }

@@ -44,6 +44,9 @@ public class ProjectRunner {
         if (showConsole) {
             DLinkedList<Influencer> combinedList = influencerList
                 .getCombinedList();
+            InfluencerListCalculator iLC = new InfluencerListCalculator(
+                combinedList);
+            iLC.sortName();
             Node<Influencer> currentNode = combinedList.getFirstNode();
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
@@ -54,6 +57,7 @@ public class ProjectRunner {
                 currentNode = currentNode.getNext();
             }
             System.out.println("**********");
+            iLC.sortReachER();
             currentNode = combinedList.getFirstNode();
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
