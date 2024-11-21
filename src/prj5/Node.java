@@ -28,7 +28,7 @@ public class Node<T>
     private T data;
         
     /**
-     * Creates a Node object while initalizing the node's next and previous
+     * Creates a Node object while initializing the node's next and previous
      * node
      * @param d the data in the node
      * @param n the next Node
@@ -98,5 +98,5 @@ public class Node<T>
     public void setPrev(Node<T> p) {
         prev = p;
     }
-    }
+}
 

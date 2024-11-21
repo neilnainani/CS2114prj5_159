@@ -70,14 +70,26 @@ public class DLinkedListTest extends TestCase
         // to be explicit
         nullString = null;
     }
-    //~ Constructors ..........................................................
-    
-    //~Public  Methods ........................................................
+    // ----------------------------------------------------------
+    /**
+     * This method tests one of the constructors of the DLinkedList class
+     */
+    public void testDLinkedList() {
+        Node<String> n1 = new Node<String>("front", null, null);
+        Node<String> n2 = new Node<String>("back", null, null);
+        DLinkedList<String> testA = new DLinkedList<String>(n1, n2);
+        assertEquals(2, testA.getNumberOfEntries());
+        DLinkedList<String> testB = new DLinkedList<String>(n1, null);
+        assertEquals(1, testB.getNumberOfEntries());
+        DLinkedList<String> testC = new DLinkedList<String>(null, null);
+        assertEquals(0, testC.getNumberOfEntries());
+    }
     // ----------------------------------------------------------
     /**
      * This method tests the add() method
      */
     public void testAdd() {
+        assertEquals(false, emptyA.add(null));
         emptyA.add("q");
         assertEquals(emptyA.getFirstNode().getData(), "q");
         assertEquals(emptyA.getLastNode().getData(), "q");
@@ -90,6 +102,9 @@ public class DLinkedListTest extends TestCase
         assertEquals(emptyA.getFirstNode().getNext().getData(), "e");
         assertEquals(emptyA.add(5, "false"), false);
         assertEquals(emptyA.add(-1, "false"), false);
+        emptyB.add(0, "data");
+        assertEquals(emptyB.getFirstNode().getData(), "data");
+        assertEquals(true, bigA.add(100, "data"));
     }
     
     // ----------------------------------------------------------
@@ -116,6 +131,13 @@ public class DLinkedListTest extends TestCase
         bigB.add("cool");
         bigA.add("not cool");
         assertEquals(false, bigB.equals(bigA));
+        smallA.add("cool?");
+        assertEquals(false, smallA.equals(smallB));
+        smallB.add("not cool");
+        assertEquals(false, smallA.equals(smallB));
+        bigA.removeBack();
+        bigA.add(63, ".");
+        assertEquals(false, bigA.equals(bigB));
     }
     
     // ----------------------------------------------------------
@@ -143,6 +165,117 @@ public class DLinkedListTest extends TestCase
      * This method tests the remove() method
      */
     public void testRemove() {
+        assertEquals(false, smallA.remove(-1));
+        assertEquals(false, bigA.remove(200));
+        assertEquals(true, bigA.remove(0));
+        assertEquals("sport1", bigA.getFirstNode().getData());
+        assertEquals(true, smallB.remove(2));
+        assertEquals("swimming", smallB.getLastNode().getData());
+        assertEquals(false, smallA.remove(10));
+        smallA.add("3");
+        assertEquals(true, smallA.remove(1));
+        assertEquals("gymnastics", smallA.get(1));
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the getNumberOfEntries()
+     */
+    public void testGetNumberOfEntries() {
+        assertEquals(0, emptyA.getNumberOfEntries());
+        assertEquals(100, bigA.getNumberOfEntries());
+        assertEquals(3, smallB.getNumberOfEntries());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the getFirstNode() method
+     */
+    public void testGetFirstNode() {
+        assertEquals(smallA.getFirstNode().getData(), "soccer");
+        assertEquals(null, emptyA.getFirstNode().getData());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the getLastNode() method
+     */
+    public void testGetLastNode() {
+        assertEquals(smallA.getLastNode().getData(), "gymnastics");
+        assertEquals(null, emptyB.getLastNode().getData());
+        emptyA.add("one");
+        assertEquals(emptyA.getLastNode(), emptyA.getLastNode());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the addToFront() method
+     */
+    public void testAddToFront() {
+        Node<String> n = new Node<String>("front", null, null);
+        Node<String> n1 = new Node<String>(null, null, null);
+        assertEquals(false, emptyA.addToFront(n1));
+        assertEquals(true, bigA.addToFront(n));
+        assertEquals(bigA.getFirstNode().getData(), "front");
+        assertEquals(101, bigA.getNumberOfEntries());
+        assertEquals(true, emptyA.addToFront(n));
+        assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
+        assertEquals(1, emptyA.getNumberOfEntries());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the addToBack() method
+     */
+    public void testAddToBack() {
+        Node<String> n = new Node<String>("back", null, null);
+        bigA.addToBack(n);
+        assertEquals(bigA.getLastNode().getData(), "back");
+        assertEquals(101, bigA.getNumberOfEntries());
+        emptyA.addToBack(n);
+        assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
+        assertEquals(1, emptyA.getNumberOfEntries());
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * This method tests the removeFront() method
+     */
+    public void testRemoveFront() {
+        bigA.removeFront();
+        assertEquals(bigA.getFirstNode().getData(), "sport1");
+        assertEquals(99, bigA.getNumberOfEntries());
+        emptyA.removeFront();
+        assertEquals(0, emptyA.getNumberOfEntries());
+    }
+    
+    /**
+     * This method tests the removeBack() method
+     */
+    public void testRemoveBack() {
+        bigA.removeBack();
+        assertEquals(bigA.getLastNode().getData(), "sport98");
+        assertEquals(99, bigA.getNumberOfEntries());
+        emptyA.removeBack();
+        assertEquals(0, emptyA.getNumberOfEntries());
+    }
+    
+    /**
+     * This method tests the isEmpty() method
+     */
+    public void testIsEmpty() {
+        assertEquals(true, emptyA.isEmpty());
+        assertEquals(false, bigB.isEmpty());
+    }
+    /**
+     * This method tests the contains() method
+     */
+    public void testContains() {
+        assertEquals(true, bigB.contains("sport56"));
+        assertEquals(false, bigA.contains("false"));
+        assertEquals(false, emptyA.contains(null));
+        assertEquals(true, smallB.contains("swimming"));
+        assertEquals(false, smallA.contains("sports"));
         
     }
 }

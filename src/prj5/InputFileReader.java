@@ -3,7 +3,7 @@
 // As a Hokie, I will conduct myself with honor and integrity at all times.
 // I will not lie, cheat, or steal, nor will I
 // accept the actions of those who do.
-// -- Noah Chen (noahc20)
+// -- Farhan Uddin (farhanuddin)
 
 package prj5;
 
@@ -11,22 +11,46 @@ import java.util.Scanner;
 
 import student.IOHelper;
 
-public class InputFileReader {
+// -------------------------------------------------------------------------
+/**
+ * Class to read files and fill in data structures of lists with influencer data
+ * 
+ * @author Farhan Uddin
+ * @version Nov 21, 2024
+ */
+public class InputFileReader
+{
 
     private InfluencerList iList;
     private String fileName;
     /**
      * Array of month names
      */
-    public final static String[] MONTHS = { "January", "February", "March",
-        "April", "May", "June", "July", "August", "September", "October",
-        "November", "December" };
+    public final static String[] MONTHS =
+        { "January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December" };
 
-    public InputFileReader(String fileName) {
+    // ----------------------------------------------------------
+    /**
+     * Create a new InputFileReader object.
+     * 
+     * @param fileName
+     *            name of file being read
+     */
+    public InputFileReader(String fileName)
+    {
         this.fileName = fileName;
     }
 
-    public InfluencerList readInputFile() {
+
+    // ----------------------------------------------------------
+    /**
+     * Read the input file of the class and fill in influencerlist
+     * 
+     * @return influencer list with file data
+     */
+    public InfluencerList readInputFile()
+    {
         Scanner inStream = IOHelper.createScanner(fileName);
         inStream.nextLine();
 
@@ -36,7 +60,8 @@ public class InputFileReader {
 
         String[] monthLists = new String[3];
         int monthListsSize = 0;
-        while (inStream.hasNextLine()) {
+        while (inStream.hasNextLine())
+        {
             String line = inStream.nextLine().replaceAll(" ", "");
             String[] values = line.split(",");
             String month = values[0];
@@ -99,12 +124,16 @@ public class InputFileReader {
         return iList;
     }
 
-    private int toInt(String str) {
 
-        try {
+    private int toInt(String str)
+    {
+
+        try
+        {
             return Integer.parseInt(str);
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             return 0;
         }
     }
