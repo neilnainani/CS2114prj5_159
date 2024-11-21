@@ -73,21 +73,23 @@ public class InfluencerList {
                             currInfl.getViews()
                                 + CombinedList.get(j).getViews());
                         CombinedList.add(newInfl);
+                        CombinedList.remove(j);
                         found = true;
                         break;
                     }
-                    // If influencer not already in CombinedList
-                    if (!found) {
-                        Influencer newInfl = new Influencer("Combined",
-                            currInfl.getUsername(), currInfl.getChannelName(),
-                            currInfl.getLikes(), currInfl.getFollowers(),
-                            currInfl.getComments(), currInfl.getViews());
-                        CombinedList.add(newInfl);
-                    }
+                }
+                // If influencer not already in CombinedList
+                if (!found) {
+                    Influencer newInfl = new Influencer("Combined",
+                        currInfl.getUsername(), currInfl.getChannelName(),
+                        currInfl.getLikes(), currInfl.getFollowers(),
+                        currInfl.getComments(), currInfl.getViews());
+                    CombinedList.add(newInfl);
                 }
             }
         }
         return CombinedList;
+
     }
 
     /**
