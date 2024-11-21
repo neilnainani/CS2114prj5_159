@@ -16,51 +16,6 @@ package prj5;
  *  @version Nov 19, 2024
  */
 public class DLinkedList<T> {
-    /**
-     * firstNode is the head or the top Node in the list
-     * lastNode is the tail or the bottom Node in the list
-     * numberOfEntries is the number of entries in the list
-     */
-
-    private static class Node<T> {
-        private Node<T> next;
-        private Node<T> prev;
-        private T data;
-
-        public Node(T d, Node<T> n, Node<T> p) {
-            next = n;
-            prev = p;
-            data = d;
-        }
-
-        public Node(T d2) {
-            data = d2;
-        }
-
-        public Node<T> getNext() {
-            return next;
-        }
-
-        public Node<T> getPrev() {
-            return prev;
-        }
-
-        public T getData() {
-            return data;
-        }
-
-        public void setNext(Node<T> n) {
-            next = n;
-        }
-
-        public void setData(T d) {
-            data = d;
-        }
-
-        public void setPrev(Node<T> p) {
-            prev = p;
-        }
-    }
 
     private Node<T> firstNode;
     private Node<T> lastNode;
@@ -105,6 +60,10 @@ public class DLinkedList<T> {
             return false;
         }
         Node<T> newNode = new Node<T>(data);
+        if (numberOfEntries == 0) {
+            firstNode = newNode;
+            lastNode = firstNode;
+        }
         if (firstNode != null) {
             lastNode.setNext(newNode);
             newNode.setPrev(lastNode);
