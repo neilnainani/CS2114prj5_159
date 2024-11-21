@@ -57,11 +57,11 @@ public class Influencer implements Comparable<Influencer> {
     }
 
     public double calculateTradEngagement() {
-        return ((comments + likes) / followers) * 100;
+        return ((comments + likes) / (followers / 100));
     }
 
     public double calculateReachEngagement() {
-        return ((comments + likes) / views) * 100;
+        return ((comments + likes) / (views / 100));
     }
 
     @SuppressWarnings("null")
