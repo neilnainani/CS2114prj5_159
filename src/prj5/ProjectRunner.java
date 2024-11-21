@@ -8,7 +8,6 @@
 package prj5;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 /**
  * Runs the program by triggering InputFileReader class which then calls other
@@ -42,18 +41,14 @@ public class ProjectRunner {
         boolean showGUI = false;
 
         InfluencerList influencerList = filer.readInputFile();
-        
-        DecimalFormat x = new DecimalFormat("#.#");
 
-        if (showConsole)
-        {
-            InfluencerListCalculator calc =
-                new InfluencerListCalculator(influencerList.getCombinedList());
-            
-            influencerList = calc.sortName();
+        if (showConsole) {
+            InfluencerListCalculator calc = new InfluencerListCalculator(
+                influencerList.getCombinedList());
+
             DLinkedList<Influencer> combined = influencerList.getCombinedList();
-
-            Node<Influencer> currentNode = combinedList.getFirstNode();
+            calc.sortName();
+            Node<Influencer> currentNode = combined.getFirstNode();
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
@@ -63,10 +58,11 @@ public class ProjectRunner {
                 System.out.println("==========");
                 currentNode = currentNode.getNext();
             }
-            System.out.println("**********\n");
-            iLC.sortReachER();
-            currentNode = combinedList.getFirstNode();
-            
+            System.out.println("**********");
+            System.out.println("**********");
+            calc.sortReachER();
+            currentNode = combined.getFirstNode();
+
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
