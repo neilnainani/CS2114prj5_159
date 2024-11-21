@@ -193,7 +193,6 @@ public class DLinkedList<T> {
      * @return T the data retrieved, returns null if index isn't in range
      */
     public T get(int i) {
-        /**
         if (i < 0 || i >= numberOfEntries) {
             return null;
         }
@@ -202,8 +201,6 @@ public class DLinkedList<T> {
             currNode = currNode.getNext();
         }
         return currNode.getData();
-        */
-        return getNode(i).getData();
     }
     
     /**
@@ -214,11 +211,10 @@ public class DLinkedList<T> {
      */
     private Node<T> getNode(int i) {
         if (i < 0 || i >= numberOfEntries) {
-            Node<T> n = new Node<T>(null);
-            return n;
+            return null;
         }
         Node<T> currNode = firstNode;
-        for (int n = 0; n < i + 1; n++) {
+        for (int n = 0; n < i; n++) {
             currNode = currNode.getNext();
         }
         return currNode;
