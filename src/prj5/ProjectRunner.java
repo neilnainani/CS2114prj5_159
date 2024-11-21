@@ -52,9 +52,13 @@ public class ProjectRunner {
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
-                System.out.println("traditional: "
-                    + (Math.round(influencer.calculateTradEngagement() * 10.0)
-                        / 10.0));
+                if (influencer.calculateTradEngagement() == -1) {
+                    System.out.println("traditional: na");
+                }
+                else {
+                    System.out.println("traditional: " + (Math.round(
+                        influencer.calculateTradEngagement() * 10.0) / 10.0));
+                }
                 System.out.println("==========");
                 currentNode = currentNode.getNext();
             }
@@ -66,9 +70,13 @@ public class ProjectRunner {
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
-                System.out.println("reach: "
-                    + +(Math.round(influencer.calculateReachEngagement() * 10.0)
-                        / 10.0));
+                if (influencer.calculateReachEngagement() == -1) {
+                    System.out.println("reach: na");
+                }
+                else {
+                    System.out.println("reach: " + (Math.round(
+                        influencer.calculateReachEngagement() * 10.0) / 10.0));
+                }
                 System.out.println("==========");
                 currentNode = currentNode.getNext();
             }
