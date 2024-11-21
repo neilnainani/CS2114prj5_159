@@ -9,20 +9,22 @@ package prj5;
 
 // -------------------------------------------------------------------------
 /**
- *  This class implements a Doubly Linked List
- *  @param <T>
+ * This class implements a Doubly Linked List
  * 
- *  @author Neil Nainani (neilnainani)
- *  @version Nov 19, 2024
+ * @param <T>
+ * 
+ * @author Neil Nainani (neilnainani)
+ * @version Nov 19, 2024
  */
 public class DLinkedList<T> {
 
     private Node<T> firstNode;
     private Node<T> lastNode;
     private int numberOfEntries;
-    
+
     /**
      * Creates a DLinkedList object while initializing a first and last Node
+     * 
      * @param f the front Node that gets initialized
      * @param l the last Node that gets initialized
      */
@@ -32,14 +34,14 @@ public class DLinkedList<T> {
         if (firstNode.getData() != null && lastNode.getData() != null) {
             numberOfEntries = 2;
         }
-        else if(firstNode.getData() == null && lastNode.getData() == null) {
+        else if (firstNode.getData() == null && lastNode.getData() == null) {
             numberOfEntries = 0;
         }
         else {
             numberOfEntries = 1;
         }
     }
-    
+
     // ----------------------------------------------------------
     /**
      * Creates a DLinkedList object initializing the first and last Node to null
@@ -47,11 +49,12 @@ public class DLinkedList<T> {
     public DLinkedList() {
         clear();
     }
-    
+
     // ----------------------------------------------------------
 
     /**
      * Adds a new Node to the top of the list
+     * 
      * @param data the data in the node to be added to the list
      * @return boolean returns true if data is not null, false otherwise
      */
@@ -62,24 +65,21 @@ public class DLinkedList<T> {
         Node<T> newNode = new Node<T>(data, null, null);
         if (numberOfEntries == 0) {
             firstNode = newNode;
-            lastNode = firstNode;
-        }
-        if (firstNode != null) {
-            lastNode.setNext(newNode);
-            newNode.setPrev(lastNode);
         }
         else {
-            firstNode = newNode;
+            lastNode.setNext(newNode);
+            newNode.setPrev(lastNode);
         }
         lastNode = newNode;
         numberOfEntries++;
         return true;
     }
-    
+
     /**
      * Adds a new Node to a specific index in the list
+     * 
      * @param index the index where the Node will be added
-     * @param data the data in the Node to be added
+     * @param data  the data in the Node to be added
      * @return boolean returns true at all times due to no restrictions on size
      */
     public boolean add(int index, T data) {
@@ -105,7 +105,7 @@ public class DLinkedList<T> {
         numberOfEntries++;
         return true;
     }
-    
+
     /**
      * Clears the list of everything, acts a constructor with no parameters
      */
@@ -115,8 +115,10 @@ public class DLinkedList<T> {
         lastNode = new Node<T>(null);
         numberOfEntries = 0;
     }
+
     /**
      * Checks if another object is equal to this one
+     * 
      * @param obj the object this is compared to
      * @return boolean true if they equal each other, false otherwise
      */
@@ -131,8 +133,8 @@ public class DLinkedList<T> {
         @SuppressWarnings("unchecked")
         DLinkedList<T> o = (DLinkedList<T>) obj;
         if (numberOfEntries != o.getNumberOfEntries()
-            || firstNode.getData() != o.getFirstNode().getData()
-            || lastNode.getData() != o.getLastNode().getData()) {
+            || !firstNode.getData().equals(o.getFirstNode().getData())
+            || !lastNode.getData().equals(o.getLastNode().getData())) {
             return false;
         }
         for (int i = 0; i < numberOfEntries; i++) {
@@ -144,9 +146,10 @@ public class DLinkedList<T> {
         }
         return true;
     }
-    
+
     /**
      * Returns the data in a node at a specific index
+     * 
      * @param i the index the node is retrieved from
      * @return T the data retrieved, returns null if index isn't in range
      */
@@ -155,14 +158,16 @@ public class DLinkedList<T> {
             return null;
         }
         Node<T> currNode = firstNode;
+
         for (int n = 0; n < i; n++) {
             currNode = currNode.getNext();
         }
         return currNode.getData();
     }
-    
+
     /**
      * This is a helper method used to get a Node at a specific index
+     * 
      * @param i the specific index
      * @return Node<T> the node at the specified index
      * 
@@ -177,9 +182,10 @@ public class DLinkedList<T> {
         }
         return currNode;
     }
-    
+
     /**
      * This method finds the index of a Node with the parameter's data in it
+     * 
      * @param d the data in which we find the index of
      * @return int the index where the node with the paramater's data is at.
      */
@@ -193,9 +199,10 @@ public class DLinkedList<T> {
         }
         return -1;
     }
-    
+
     /**
      * This method removes a node at a specified index
+     * 
      * @param i the specified index
      * @return boolean returns true if successful, false otherwise
      */
@@ -227,33 +234,37 @@ public class DLinkedList<T> {
         numberOfEntries--;
         return true;
     }
-    
+
     /**
      * Returns the number of entries in the list
+     * 
      * @return int the number of entries in the list
      */
     public int getNumberOfEntries() {
         return numberOfEntries;
     }
-    
+
     /**
      * Returns the first Node
+     * 
      * @return Node<T> the top Node
      */
     public Node<T> getFirstNode() {
         return firstNode;
     }
-    
+
     /**
      * Returns the last Node
+     * 
      * @return Node<T> the last Node
      */
     public Node<T> getLastNode() {
         return lastNode;
     }
-    
+
     /**
      * Adds a node to the front or top of the list
+     * 
      * @param n the node to be added
      * @return boolean true if the add was successful, false otherwise
      */
@@ -273,40 +284,43 @@ public class DLinkedList<T> {
         numberOfEntries++;
         return true;
     }
-    
+
     /**
      * Adds a node to the back or bottom of the list
+     * 
      * @param n the node to be added
      */
     public void addToBack(Node<T> n) {
         add(n.getData());
     }
-    
+
     /**
      * Removes the top or front Node
      */
     public void removeFront() {
         remove(0);
     }
-    
+
     /**
      * Removes the back or bottom Node
      */
     public void removeBack() {
         remove(numberOfEntries - 1);
     }
-    
+
     /**
      * Checks if the list is empty or not
+     * 
      * @return boolean true if empty, false otherwise
      */
     public boolean isEmpty() {
         return numberOfEntries == 0;
     }
-    
+
     // ----------------------------------------------------------
     /**
      * Checks if the list contains a certain data
+     * 
      * @param d the data being check if in the list or not
      * @return boolean true if data is in list, false otherwise
      */

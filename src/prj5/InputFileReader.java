@@ -7,61 +7,83 @@
 
 package prj5;
 
-public class InputFileReader
-{
+import java.util.Scanner;
+
+import student.IOHelper;
+
+public class InputFileReader {
 
     private InfluencerList iList;
     private String fileName;
+    /**
+     * Array of month names
+     */
+    public final static String[] MONTHS = { "January", "February", "March",
+        "April", "May", "June", "July", "August", "September", "October",
+        "November", "December" };
 
-    public InputFileReader(String fileName)
-    {
+    public InputFileReader(String fileName) {
         this.fileName = fileName;
     }
-
 
     public InfluencerList readInputFile() {
         Scanner inStream = IOHelper.createScanner(fileName);
         inStream.nextLine();
-        
-        DLinkedList<Influencer> janList;
-        DLinkedList<Influencer> febList;
-        DLinkedList<Influencer> marchList;
-        
+
+        DLinkedList<Influencer> firstList = new DLinkedList<Influencer>();
+        DLinkedList<Influencer> secondList = new DLinkedList<Influencer>();
+        DLinkedList<Influencer> thirdList = new DLinkedList<Influencer>();
+
+        String[] monthLists = new String[3];
+        int monthListsSize = 0;
         while (inStream.hasNextLine()) {
             String line = inStream.nextLine().replaceAll(" ", "");
             String[] values = line.split(",");
             String month = values[0];
-            Stirng username = values[1];
+            String username = values[1];
             String channel = values[2];
             int likes = toInt(values[5]);
             int followers = toInt(values[7]);
             int comments = toInt(values[8]);
             int views = toInt(values[9]);
-            
-            if(month.equals("January")) {
-                janList.add(new Influencer(month, username, channel, likes, followers, comments, views));
+
+            if (monthListsSize < 3) {
+                for (int i = 0; i < MONTHS.length; i++) {
+                    if (month.equals(MONTHS[i])) {
+                        monthLists[monthListsSize] = month;
+                        monthListsSize++;
+                    }
+                }
             }
-            if(month.equals("February")) {
-                febList.add(new Influencer(month, username, channel, likes, followers, comments, views));
+            for (int i = 0; i < monthListsSize; i++) {
+                if (monthLists[i].equals(month)) {
+                    switch (i) {
+                        case 0:
+                            firstList.add(new Influencer(month, username,
+                                channel, likes, followers, comments, views));
+                        case 1:
+                            secondList.add(new Influencer(month, username,
+                                channel, likes, followers, comments, views));
+                        case 2:
+                            thirdList.add(new Influencer(month, username,
+                                channel, likes, followers, comments, views));
+                    }
+
+                }
             }
-            if(month.equals("March")) {
-                marchList.add(new Influencer(month, username, channel, likes, followers, comments, views));
-            }
+
         }
-        
-        iList = new InfluencerList(janList, febList, marchList);
+
+        iList = new InfluencerList(firstList, secondList, thirdList);
+        return iList;
     }
 
+    private int toInt(String str) {
 
-    private int toInt(String str)
-    {
-
-        try
-        {
-            return Integer.ParseInt(str);
+        try {
+            return Integer.parseInt(str);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             return 0;
         }
     }
