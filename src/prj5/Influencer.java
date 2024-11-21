@@ -7,9 +7,7 @@
 
 package prj5;
 
-public class Influencer
-    implements Comparable<T>
-{
+public class Influencer implements Comparable<Influencer> {
 
     private String month;
     private String username;
@@ -19,17 +17,17 @@ public class Influencer
     private int comments;
     private int views;
 
-    public Influencer(String m, String u, String c, int l, int f, int c, int v)
-    {
+    public Influencer(String m, String u, String c, int l, int f, int cM,
+        int v) {
         month = m;
         username = u;
         channelName = c;
         likes = l;
         followers = f;
-        comments = c;
+        comments = cM;
         views = v;
     }
-    
+
     public String getMonth() {
         return month;
     }
@@ -37,38 +35,37 @@ public class Influencer
     public String getUsername() {
         return username;
     }
-    
+
     public String getChannelName() {
         return channelName;
     }
-    
+
     public int getLikes() {
         return likes;
     }
-    
+
     public int getFollowers() {
         return followers;
     }
-    
+
     public int getComments() {
         return comments;
     }
-    
+
     public int getViews() {
         return views;
     }
-    
+
     public double calculateTradEngagement() {
         return ((comments + likes) / followers) * 100;
     }
-    
+
     public double calculateReachEngagement() {
         return ((comments + likes) / views) * 100;
     }
 
-    @Override
-    public int compareTo(Influencer o, String engagementType)
-    {
+    @SuppressWarnings("null")
+    public int compareTo(Influencer o, String engagementType) {
         // TODO Auto-generated method stub
         if (engagementType == null || o == null) {
             throw new IllegalArgumentException();
@@ -86,12 +83,35 @@ public class Influencer
             if (calculateReachEngagement() < o.calculateReachEngagement()) {
                 return -1;
             }
-            else if (calculateReachEngagement() > o.calculateReachEngagement()) {
+            else if (calculateReachEngagement() > o
+                .calculateReachEngagement()) {
                 return 1;
             }
             return 0;
         }
-        return null;
+        return (Integer) null;
+    }
+
+    @Override
+    public int compareTo(Influencer o) {
+        return compareTo(o, "trad");
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if ((other == null) || other.getClass() != this.getClass()) {
+            return false;
+        }
+        if (!getChannelName().equals(((Influencer) other).getChannelName())
+            || !getMonth().equals(((Influencer) other).getMonth())
+            || !getUsername().equals(((Influencer) other).getUsername())
+            || getLikes() != ((Influencer) other).getLikes()
+            || getFollowers() != ((Influencer) other).getFollowers()
+            || getComments() != ((Influencer) other).getComments()
+            || getViews() != ((Influencer) other).getViews()) {
+            return false;
+        }
+        return true;
     }
 
 }

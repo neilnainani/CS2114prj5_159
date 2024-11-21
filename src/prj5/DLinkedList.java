@@ -8,48 +8,47 @@
 package prj5;
 
 public class DLinkedList<T> {
-    
+
     private static class Node<T> {
         private Node<T> next;
         private Node<T> prev;
         private T data;
-        
-        
+
         public Node(T d, Node<T> n, Node<T> p) {
             next = n;
             prev = p;
             data = d;
         }
-        
+
         public Node(T d2) {
             data = d2;
         }
-        
+
         public Node<T> getNext() {
             return next;
         }
-        
+
         public Node<T> getPrev() {
             return prev;
         }
-        
+
         public T getData() {
             return data;
         }
-        
+
         public void setNext(Node<T> n) {
             next = n;
         }
-        
+
         public void setData(T d) {
             data = d;
         }
-        
+
         public void setPrev(Node<T> p) {
             prev = p;
         }
     }
-    
+
     private Node<T> firstNode;
     private Node<T> lastNode;
     private int numberOfEntries;
@@ -60,26 +59,35 @@ public class DLinkedList<T> {
         if (firstNode != null && lastNode != null) {
             numberOfEntries = 2;
         }
-        else if(firstNode == null && lastNode == null) {
+        else if (firstNode == null && lastNode == null) {
             numberOfEntries = 0;
         }
         else {
             numberOfEntries = 1;
         }
     }
-    
+
     public DLinkedList() {
         clear();
     }
-    
+
     public boolean add(T data) {
+        if (data == null) {
+            return false;
+        }
         Node<T> newNode = new Node<T>(data);
-        firstNode.setPrev(newNode);
-        firstNode = newNode;
+        if (firstNode != null) {
+            lastNode.setNext(newNode);
+            newNode.setPrev(lastNode);
+        }
+        else {
+            firstNode = newNode;
+        }
+        lastNode = newNode;
         numberOfEntries++;
         return true;
     }
-    
+
     public boolean add(int index, T data) {
         Node<T> newNode = new Node<T>(data);
         Node<T> currentNode = firstNode;
@@ -105,13 +113,13 @@ public class DLinkedList<T> {
         numberOfEntries++;
         return true;
     }
-    
+
     public void clear() {
         firstNode = null;
         lastNode = null;
         numberOfEntries = 0;
     }
-    
+
     public boolean equals(Object obj) {
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
@@ -120,10 +128,10 @@ public class DLinkedList<T> {
             return true;
         }
         @SuppressWarnings("unchecked")
-        DLinkedList<T> o = (DLinkedList<T>)obj;
-        if (numberOfEntries != o.getNumberOfEntries() || firstNode.getData() !=
-            o.getFirstNode().getData() || lastNode.getData() != 
-            o.getLastNode().getData()) {
+        DLinkedList<T> o = (DLinkedList<T>) obj;
+        if (numberOfEntries != o.getNumberOfEntries()
+            || firstNode.getData() != o.getFirstNode().getData()
+            || lastNode.getData() != o.getLastNode().getData()) {
             return false;
         }
         for (int i = 0; i < numberOfEntries; i++) {
@@ -133,18 +141,18 @@ public class DLinkedList<T> {
         }
         return true;
     }
-    
+
     public T get(int i) {
         if (i < 0 || i >= numberOfEntries) {
             return null;
         }
         Node<T> currNode = firstNode;
-        for (int n = 0; n < i + 1; n++) {
+        for (int n = 0; n < i; n++) {
             currNode = currNode.getNext();
         }
         return currNode.getData();
     }
-    
+
     private Node<T> getNode(int i) {
         Node<T> currNode = firstNode;
         for (int n = 0; n < i + 1; n++) {
@@ -152,7 +160,7 @@ public class DLinkedList<T> {
         }
         return currNode;
     }
-    
+
     public int indexOf(T d) {
         Node<T> currNode = firstNode;
         for (int i = 0; i < numberOfEntries; i++) {
@@ -163,7 +171,7 @@ public class DLinkedList<T> {
         }
         return -1;
     }
-    
+
     public boolean remove(int i) {
         if (i == 0) {
             firstNode.setData(null);
@@ -189,38 +197,39 @@ public class DLinkedList<T> {
         numberOfEntries--;
         return true;
     }
-    
+
     public int getNumberOfEntries() {
         return numberOfEntries;
     }
-    
+
     public Node<T> getFirstNode() {
         return firstNode;
     }
-    
+
     public Node<T> getLastNode() {
         return lastNode;
     }
-    
+
     public void addToFront(Node<T> n) {
         add(0, n.getData());
     }
+
     public void addToBack(Node<T> n) {
         add(numberOfEntries, n.getData());
     }
-    
+
     public void removeFront() {
         remove(0);
     }
-    
+
     public void removeBack() {
         remove(numberOfEntries - 1);
     }
-    
+
     public boolean isEmpty() {
         return numberOfEntries == 0;
     }
-    
+
     public boolean contains(T d) {
         Node<T> curr = firstNode;
         for (int i = 0; i < numberOfEntries; i++) {
@@ -231,7 +240,3 @@ public class DLinkedList<T> {
         return false;
     }
 }
-
-    
-
-
