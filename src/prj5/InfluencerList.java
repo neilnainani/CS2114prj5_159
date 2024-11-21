@@ -18,7 +18,10 @@ public class InfluencerList {
     private DLinkedList<Influencer> TwoList;
     private DLinkedList<Influencer> ThreeList;
     private DLinkedList<Influencer> CombinedList;
-    private static final int MONTHS = 3;
+    /**
+     * Months to be analyzed
+     */
+    public static final int MONTHS = 3;
 
     /**
      * Constructor for InfluencerList Sets Jan, Feb, and March lists and creates
@@ -66,8 +69,7 @@ public class InfluencerList {
                             currInfl.getUsername(), currInfl.getChannelName(),
                             currInfl.getLikes()
                                 + CombinedList.get(j).getLikes(),
-                            currInfl.getFollowers()
-                                + CombinedList.get(j).getFollowers(),
+                            currInfl.getFollowers(),
                             currInfl.getComments()
                                 + CombinedList.get(j).getComments(),
                             currInfl.getViews()

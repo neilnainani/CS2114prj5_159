@@ -46,29 +46,50 @@ public class InputFileReader {
             int followers = toInt(values[7]);
             int comments = toInt(values[8]);
             int views = toInt(values[9]);
-
-            if (monthListsSize < 3) {
-                for (int i = 0; i < MONTHS.length; i++) {
-                    if (month.equals(MONTHS[i])) {
-                        monthLists[monthListsSize] = month;
-                        monthListsSize++;
-                    }
-                }
-            }
+            boolean found = false;
             for (int i = 0; i < monthListsSize; i++) {
                 if (monthLists[i].equals(month)) {
+                    found = true;
                     switch (i) {
                         case 0:
                             firstList.add(new Influencer(month, username,
                                 channel, likes, followers, comments, views));
+                            break;
                         case 1:
                             secondList.add(new Influencer(month, username,
                                 channel, likes, followers, comments, views));
+                            break;
                         case 2:
                             thirdList.add(new Influencer(month, username,
                                 channel, likes, followers, comments, views));
+                            break;
                     }
 
+                }
+            }
+            if (!found && monthListsSize < InfluencerList.MONTHS) {
+                for (int i = 0; i < MONTHS.length; i++) {
+                    if (month.equals(MONTHS[i])) {
+                        monthLists[monthListsSize] = month;
+                        monthListsSize++;
+                        switch (monthListsSize - 1) {
+                            case 0:
+                                firstList.add(
+                                    new Influencer(month, username, channel,
+                                        likes, followers, comments, views));
+                                break;
+                            case 1:
+                                secondList.add(
+                                    new Influencer(month, username, channel,
+                                        likes, followers, comments, views));
+                                break;
+                            case 2:
+                                thirdList.add(
+                                    new Influencer(month, username, channel,
+                                        likes, followers, comments, views));
+                                break;
+                        }
+                    }
                 }
             }
 

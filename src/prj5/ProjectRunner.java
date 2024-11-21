@@ -51,19 +51,21 @@ public class ProjectRunner {
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
-                System.out.println(
-                    "traditional: " + influencer.calculateTradEngagement());
+                System.out.println("traditional: "
+                    + (Math.round(influencer.calculateTradEngagement() * 10.0)
+                        / 10.0));
                 System.out.println("==========");
                 currentNode = currentNode.getNext();
             }
-            System.out.println("**********");
+            System.out.println("**********\n");
             iLC.sortReachER();
             currentNode = combinedList.getFirstNode();
             while (currentNode != null && currentNode.getData() != null) {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
-                System.out
-                    .println("reach: " + influencer.calculateReachEngagement());
+                System.out.println("reach: "
+                    + +(Math.round(influencer.calculateReachEngagement() * 10.0)
+                        / 10.0));
                 System.out.println("==========");
                 currentNode = currentNode.getNext();
             }
