@@ -40,24 +40,24 @@ public class InfluencerListTest extends student.TestCase {
     }
 
     /**
-     * Tests getJanList method
+     * Tests getOneList method
      */
-    public void testGetJanList() {
-        assertEquals(testList.getJanList(), JanList);
+    public void testGetOneList() {
+        assertEquals(testList.getOneList(), JanList);
     }
 
     /**
-     * Tests getFebList method
+     * Tests getTwoList method
      */
-    public void testGetFebList() {
-        assertEquals(testList.getFebList(), FebList);
+    public void testGetTwoList() {
+        assertEquals(testList.getTwoList(), FebList);
     }
 
     /**
-     * Tests getJanList method
+     * Tests getThreeList method
      */
-    public void testGetMarchList() {
-        assertEquals(testList.getMarchList(), MarchList);
+    public void testGetThreeList() {
+        assertEquals(testList.getThreeList(), MarchList);
     }
 
     /**

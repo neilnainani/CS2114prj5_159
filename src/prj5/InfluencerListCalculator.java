@@ -18,89 +18,72 @@ import java.util.Comparator;
  * @version Nov 19, 2024
  */
 
-public class InfluencerListCalculator
-{
-    private InfluencerList influencerList;
+public class InfluencerListCalculator {
+    private DLinkedList<Influencer> influencerList;
 
     /**
      * Constructor for InfluencerListCalculator. Reqires a given InfluencerList
      * 
-     * @param influencerData
-     *            linked list of influencers that is to be sorted in this class.
+     * @param influencerData linked list of influencers that is to be sorted in
+     *                       this class.
      */
-    public InfluencerListCalculator(DLinkedList<Influencer> influencerData)
-    {
-        this.influencerList = new InfluencerList(influencerData);
+    public InfluencerListCalculator(DLinkedList<Influencer> influencerData) {
+        this.influencerList = influencerData;
     }
-
 
     /**
      * sorts the influencerList alphabetically by the channel names
      */
-    public InfluencerList sortName()
-    {
+    public DLinkedList<Influencer> sortName() {
         return insertionSort(influencerList, new NameComparator());
 
     }
 
-
     /**
      * sorts the influencerList highest to lowest by traditional engagment rates
      */
-    public InfluencerList sortTradER()
-    {
+    public DLinkedList<Influencer> sortTradER() {
         return insertionSort(influencerList, new TradEngagementComparator());
     }
-
 
     /**
      * sorts the influencerList highest to lowest by reach engagment rates
      */
-    public InfluencerList sortReachER()
-    {
+    public DLinkedList<Influencer> sortReachER() {
         return insertionSort(influencerList, new ReachEngagementComparator());
     }
-
 
     /**
      * insertion sort method that is customizable given a list and a specific
      * comparator
      * 
-     * @param list
-     *            the list to be sorted
-     * @param comparator
-     *            the comparator with specific criteria of how the list should
-     *            be sorted
+     * @param list       the list to be sorted
+     * @param comparator the comparator with specific criteria of how the list
+     *                   should be sorted
      * @return the final sorted influencerList
      */
-    private InfluencerList insertionSort(
-        DLinkedList<Influencer> list,
-        Comparator<Influencer> comparator)
-    {
-        if (list.isEmpty() || list.getNumberOfEntries() == 1)
-        {
+    private DLinkedList<Influencer> insertionSort(DLinkedList<Influencer> list,
+        Comparator<Influencer> comparator) {
+        if (list.isEmpty() || list.getNumberOfEntries() == 1) {
             return influencerList;
         }
 
         Node<Influencer> curr = list.getFirstNode().getNext();
 
-        while (curr != null)
-        {
+        while (curr != null) {
             Influencer temp = curr.getData();
             Node<Influencer> prev = curr.getPrev();
 
-            while (prev != null && comparator.compare(temp, prev.getData()) < 0)
-            {
+            while (prev != null
+                && comparator.compare(temp, prev.getData()) < 0) {
                 prev.getNext().setData(prev.getData());
                 prev = prev.getPrev();
             }
 
-            if (prev == null)
-            {
+            if (prev == null) {
                 list.getFirstNode().setData(temp);
             }
-            else
-            {
+            else {
                 prev.getNext().setData(temp);
             }
             curr = curr.getNext();
@@ -113,123 +96,95 @@ public class InfluencerListCalculator
      * comparator to sort influencer objects alphabetically by their channel
      * names
      */
-    private class NameComparator
-        implements Comparator<Influencer>
-    {
+    private class NameComparator implements Comparator<Influencer> {
         /**
          * compares two influencer by channel name
          * 
-         * @param a
-         *            the first influencer
-         * @param b
-         *            the second influencer
+         * @param a the first influencer
+         * @param b the second influencer
          * @return an integer postitve (a should go before b when sorted),
-         *             negative (b should go before a when sorted), or zero if
-         *             they are equal (no changes will be made to the order.)
+         *         negative (b should go before a when sorted), or zero if they
+         *         are equal (no changes will be made to the order.)
          */
         @Override
-        public int compare(Influencer a, Influencer b)
-        {
+        public int compare(Influencer a, Influencer b) {
             String nameA = a.getChannelName().toLowerCase();
             String nameB = b.getChannelName().toLowerCase();
-            if (nameA.equals(nameB))
-            {
+            if (nameA.equals(nameB)) {
                 return 0;
             }
             int length = Math.min(nameA.length(), nameB.length());
-            for (int i = 0; i < length; i++)
-            {
-                if (nameA.charAt(i) < nameB.charAt(i))
-                {
+            for (int i = 0; i < length; i++) {
+                if (nameA.charAt(i) < nameB.charAt(i)) {
                     return -1;
                 }
-                else if (nameA.charAt(i) > nameB.charAt(i))
-                {
+                else if (nameA.charAt(i) > nameB.charAt(i)) {
                     return 1;
                 }
             }
 
-            if (nameA.length() < nameB.length())
-            {
+            if (nameA.length() < nameB.length()) {
                 return -1;
             }
-            else
-            {
+            else {
                 return 1;
             }
         }
     }
-
 
     /**
      * comparator to sort influencer objects highest to lowest based on
      * traditional engagement rate
      */
-    private class TradEngagementComparator
-        implements Comparator<Influencer>
-    {
+    private class TradEngagementComparator implements Comparator<Influencer> {
         /**
          * compares two influencer by traditional engagement rate
          * 
-         * @param a
-         *            the first influencer
-         * @param b
-         *            the second influencer
+         * @param a the first influencer
+         * @param b the second influencer
          * @return an integer postitve (a should go before b when sorted),
-         *             negative (b should go before a when sorted), or zero if
-         *             they are equal (no changes will be made to the order.)
+         *         negative (b should go before a when sorted), or zero if they
+         *         are equal (no changes will be made to the order.)
          */
         @Override
-        public int compare(Influencer a, Influencer b)
-        {
-            if (a.calculateTradEngagement() < b.calculateTradEngagment())
-            {
+        public int compare(Influencer a, Influencer b) {
+            if (a.calculateTradEngagement() < b.calculateTradEngagement()) {
                 return 1;
             }
-            else if (a.calculateTradEngagement() > b.calculateTradEngagement())
-            {
+            else if (a.calculateTradEngagement() > b
+                .calculateTradEngagement()) {
                 return -1;
             }
-            else
-            {
+            else {
                 return 0;
             }
         }
     }
 
-
     /**
      * comparator to sort influencer objects highest to lowest based on reach
      * engagement rate
      */
-    private class ReachEngagementComparator
-        implements Comparator<Influencer>
-    {
+    private class ReachEngagementComparator implements Comparator<Influencer> {
         /**
          * compares two influencer by reach engagement rate
          * 
-         * @param a
-         *            the first influencer
-         * @param b
-         *            the second influencer
+         * @param a the first influencer
+         * @param b the second influencer
          * @return an integer postitve (a should go before b when sorted),
-         *             negative (b should go before a when sorted), or zero if
-         *             they are equal (no changes will be made to the order.)
+         *         negative (b should go before a when sorted), or zero if they
+         *         are equal (no changes will be made to the order.)
          */
         @Override
-        public int compare(Influencer a, Influencer b)
-        {
-            if (a.calculateReachEngagement() < b.calculateReachEngagment())
-            {
+        public int compare(Influencer a, Influencer b) {
+            if (a.calculateReachEngagement() < b.calculateReachEngagement()) {
                 return 1;
             }
             else if (a.calculateReachEngagement() > b
-                .calculateReachEngagement())
-            {
+                .calculateReachEngagement()) {
                 return -1;
             }
-            else
-            {
+            else {
                 return 0;
             }
         }
