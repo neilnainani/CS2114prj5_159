@@ -3,11 +3,20 @@
 // As a Hokie, I will conduct myself with honor and integrity at all times.
 // I will not lie, cheat, or steal, nor will I
 // accept the actions of those who do.
-// -- Noah Chen (noahc20)
+// -- Farhan Uddin (farhanuddin)
 
 package prj5;
 
-public class Influencer implements Comparable<Influencer> {
+// -------------------------------------------------------------------------
+/**
+ * Class representing a singular Influencer and its stats
+ * 
+ * @author Farhan Uddin
+ * @version Nov 21, 2024
+ */
+public class Influencer
+    implements Comparable<Influencer>
+{
 
     private String month;
     private String username;
@@ -17,8 +26,27 @@ public class Influencer implements Comparable<Influencer> {
     private int comments;
     private int views;
 
-    public Influencer(String m, String u, String c, int l, int f, int cM,
-        int v) {
+    // ----------------------------------------------------------
+    /**
+     * Create a new Influencer object.
+     * 
+     * @param m
+     *            month
+     * @param u
+     *            username
+     * @param c
+     *            channel name
+     * @param l
+     *            likes
+     * @param f
+     *            followers
+     * @param cM
+     *            comments
+     * @param v
+     *            views
+     */
+    public Influencer(String m, String u, String c, int l, int f, int cM, int v)
+    {
         month = m;
         username = u;
         channelName = c;
@@ -28,91 +56,196 @@ public class Influencer implements Comparable<Influencer> {
         views = v;
     }
 
-    public String getMonth() {
+
+    // ----------------------------------------------------------
+    /**
+     * Gets the month of the stats
+     * 
+     * @return month
+     */
+    public String getMonth()
+    {
         return month;
     }
 
-    public String getUsername() {
+
+    // ----------------------------------------------------------
+    /**
+     * Gets the username of the influencer
+     * 
+     * @return username
+     */
+    public String getUsername()
+    {
         return username;
     }
 
-    public String getChannelName() {
+
+    // ----------------------------------------------------------
+    /**
+     * Gets the channel name of the influencer
+     * 
+     * @return channel names
+     */
+    public String getChannelName()
+    {
         return channelName;
     }
 
-    public int getLikes() {
+
+    // ----------------------------------------------------------
+    /**
+     * Gets number of likes influencer has received
+     * 
+     * @return likes
+     */
+    public int getLikes()
+    {
         return likes;
     }
 
-    public int getFollowers() {
+
+    // ----------------------------------------------------------
+    /**
+     * Gets the number of followers influencer has
+     * 
+     * @return followers
+     */
+    public int getFollowers()
+    {
         return followers;
     }
 
-    public int getComments() {
+
+    // ----------------------------------------------------------
+    /**
+     * Gets the number of comments influencer has received
+     * 
+     * @return comments
+     */
+    public int getComments()
+    {
         return comments;
     }
 
-    public int getViews() {
+
+    // ----------------------------------------------------------
+    /**
+     * Gets the number of views influencer has received
+     * 
+     * @return views
+     */
+    public int getViews()
+    {
         return views;
     }
 
-    public int calculateTradEngagement() {
-        double result = ((((double) comments) + ((double) likes))
-            / (((double) followers) / ((double) 100)));
-        return (int) result;
+
+    // ----------------------------------------------------------
+    /**
+     * Calculates traditional engagement based on comments, likes and followers
+     * 
+     * @return traditional engagement
+     */
+    public int calculateTradEngagement()
+    {
+        double result = ((((double)comments) + ((double)likes))
+            / (((double)followers) / ((double)100)));
+        return (int)result;
     }
 
-    public int calculateReachEngagement() {
-        double result = ((((double) comments) + ((double) likes))
-            / (((double) views) / ((double) 100)));
-        return (int) result;
+
+    // ----------------------------------------------------------
+    /**
+     * Calculates reach engagement based on comments, likes and views
+     * 
+     * @return reach engagement
+     */
+    public int calculateReachEngagement()
+    {
+        double result = ((((double)comments) + ((double)likes))
+            / (((double)views) / ((double)100)));
+        return (int)result;
     }
 
-    @SuppressWarnings("null")
-    public int compareTo(Influencer o, String engagementType) {
+
+    // ----------------------------------------------------------
+    /**
+     * Compares this infleuncer to another influencer on engagement
+     * 
+     * @param o
+     *            other influencer
+     * @param engagementType
+     *            reach or traditional engagement
+     * @return -1 if less than other, 1 if greater than other, 0 if equal to
+     *             other influencer
+     */
+    @SuppressWarnings({ "null", "cast" })
+    public int compareTo(Influencer o, String engagementType)
+    {
         // TODO Auto-generated method stub
-        if (engagementType == null || o == null) {
+        if (engagementType == null || o == null)
+        {
             throw new IllegalArgumentException();
         }
-        if (engagementType.equals("trad")) {
-            if (calculateTradEngagement() < o.calculateTradEngagement()) {
+        if (engagementType.equals("trad"))
+        {
+            if (calculateTradEngagement() < o.calculateTradEngagement())
+            {
                 return -1;
             }
-            else if (calculateTradEngagement() > o.calculateTradEngagement()) {
+            else if (calculateTradEngagement() > o.calculateTradEngagement())
+            {
                 return 1;
             }
             return 0;
         }
-        if (engagementType.equals("reach")) {
-            if (calculateReachEngagement() < o.calculateReachEngagement()) {
+        if (engagementType.equals("reach"))
+        {
+            if (calculateReachEngagement() < o.calculateReachEngagement())
+            {
                 return -1;
             }
-            else if (calculateReachEngagement() > o
-                .calculateReachEngagement()) {
+            else if (calculateReachEngagement() > o.calculateReachEngagement())
+            {
                 return 1;
             }
             return 0;
         }
-        return (Integer) null;
+        return (Integer)null;
     }
 
+
     @Override
-    public int compareTo(Influencer o) {
+    public int compareTo(Influencer o)
+    {
         return compareTo(o, "trad");
     }
 
+
+    // ----------------------------------------------------------
+    /**
+     * Checks if influencer is equal to object passed in
+     * 
+     * @param other
+     *            object being compared
+     * @return if influencers are equal
+     */
     @Override
-    public boolean equals(Object other) {
-        if ((other == null) || other.getClass() != this.getClass()) {
+    public boolean equals(Object other)
+    {
+        if ((other == null) || other.getClass() != this.getClass())
+        {
             return false;
         }
-        if (!getChannelName().equals(((Influencer) other).getChannelName())
-            || !getMonth().equals(((Influencer) other).getMonth())
-            || !getUsername().equals(((Influencer) other).getUsername())
-            || getLikes() != ((Influencer) other).getLikes()
-            || getFollowers() != ((Influencer) other).getFollowers()
-            || getComments() != ((Influencer) other).getComments()
-            || getViews() != ((Influencer) other).getViews()) {
+        if (!getChannelName().equals(((Influencer)other).getChannelName())
+            || !getMonth().equals(((Influencer)other).getMonth())
+            || !getUsername().equals(((Influencer)other).getUsername())
+            || getLikes() != ((Influencer)other).getLikes()
+            || getFollowers() != ((Influencer)other).getFollowers()
+            || getComments() != ((Influencer)other).getComments()
+            || getViews() != ((Influencer)other).getViews())
+        {
             return false;
         }
         return true;
