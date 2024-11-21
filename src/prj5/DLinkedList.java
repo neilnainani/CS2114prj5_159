@@ -21,6 +21,47 @@ public class DLinkedList<T> {
      * lastNode is the tail or the bottom Node in the list
      * numberOfEntries is the number of entries in the list
      */
+
+    private static class Node<T> {
+        private Node<T> next;
+        private Node<T> prev;
+        private T data;
+
+        public Node(T d, Node<T> n, Node<T> p) {
+            next = n;
+            prev = p;
+            data = d;
+        }
+
+        public Node(T d2) {
+            data = d2;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public Node<T> getPrev() {
+            return prev;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setNext(Node<T> n) {
+            next = n;
+        }
+
+        public void setData(T d) {
+            data = d;
+        }
+
+        public void setPrev(Node<T> p) {
+            prev = p;
+        }
+    }
+
     private Node<T> firstNode;
     private Node<T> lastNode;
     private int numberOfEntries;
@@ -110,6 +151,7 @@ public class DLinkedList<T> {
     /**
      * Clears the list of everything, acts a constructor with no parameters
      */
+
     public void clear() {
         firstNode = new Node<T>(null);
         lastNode = new Node<T>(null);
@@ -120,6 +162,7 @@ public class DLinkedList<T> {
      * @param obj the object this is compared to
      * @return boolean true if they equal each other, false otherwise
      */
+
     public boolean equals(Object obj) {
         if (obj == null || !(obj.getClass().equals(this.getClass()))) {
             return false;
@@ -128,11 +171,10 @@ public class DLinkedList<T> {
             return true;
         }
         @SuppressWarnings("unchecked")
-        DLinkedList<T> o = (DLinkedList<T>)obj;
-        if (numberOfEntries != o.getNumberOfEntries() ||
-            !firstNode.getData().equals(o.getFirstNode().getData()) || 
-            !lastNode.getData().equals(o.getLastNode().getData()) ) 
-        {
+        DLinkedList<T> o = (DLinkedList<T>) obj;
+        if (numberOfEntries != o.getNumberOfEntries()
+            || firstNode.getData() != o.getFirstNode().getData()
+            || lastNode.getData() != o.getLastNode().getData()) {
             return false;
         }
         for (int i = 0; i < numberOfEntries; i++) {
@@ -156,7 +198,7 @@ public class DLinkedList<T> {
             return null;
         }
         Node<T> currNode = firstNode;
-        for (int n = 0; n < i + 1; n++) {
+        for (int n = 0; n < i; n++) {
             currNode = currNode.getNext();
         }
         return currNode.getData();
@@ -297,6 +339,7 @@ public class DLinkedList<T> {
      * @param d the data being check if in the list or not
      * @return boolean true if data is in list, false otherwise
      */
+
     public boolean contains(T d) {
         Node<T> curr = firstNode;
         for (int i = 0; i < numberOfEntries; i++) {
@@ -307,7 +350,3 @@ public class DLinkedList<T> {
         return false;
     }
 }
-
-    
-
-
