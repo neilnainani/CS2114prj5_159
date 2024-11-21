@@ -19,9 +19,8 @@ public class Influencer
     private int comments;
     private int views;
 
-    public Influencer(String m, String u, Stirng c, int l, int f, int c, int v)
+    public Influencer(String m, String u, String c, int l, int f, int c, int v)
     {
-        // TODO Auto-generated constructor stub
         month = m;
         username = u;
         channelName = c;
