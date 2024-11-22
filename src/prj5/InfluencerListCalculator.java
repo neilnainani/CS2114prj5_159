@@ -10,20 +10,19 @@ package prj5;
 import java.util.Comparator;
 
 /**
- * Provides sorting methods for a list of influencers based on engagment rates
- * and names. It includes nested comparator classes are used to customize the
- * insertion sort method.
+ * Provides sorting methods for a list of influencers based on engagement rates
+ * and names. It includes nested comparator classes that are used to customize
+ * the insertion sort method.
  * 
  * @author chloe
  * @version Nov 19, 2024
  */
-
 public class InfluencerListCalculator
 {
     private DLinkedList<Influencer> influencerList;
 
     /**
-     * Constructor for InfluencerListCalculator. Reqires a given InfluencerList
+     * Constructor for InfluencerListCalculator. Requires a given InfluencerList
      * 
      * @param influencerData
      *            linked list of influencers that is to be sorted in this class.
@@ -35,21 +34,21 @@ public class InfluencerListCalculator
 
 
     /**
-     * sorts the influencerList alphabetically by the channel names
+     * Sorts the influencerList alphabetically by the channel names
      * 
      * @return Sorted list by names
      */
     public DLinkedList<Influencer> sortName()
     {
         return insertionSort(influencerList, new NameComparator());
-
     }
 
 
     /**
-     * sorts the influencerList highest to lowest by traditional engagment rates
+     * Sorts the influencerList highest to lowest by traditional engagement
+     * rates
      * 
-     * @return sorted list by Traditional ER
+     * @return Sorted list by Traditional ER
      */
     public DLinkedList<Influencer> sortTradER()
     {
@@ -58,9 +57,9 @@ public class InfluencerListCalculator
 
 
     /**
-     * sorts the influencerList highest to lowest by reach engagment rates
+     * Sorts the influencerList highest to lowest by reach engagement rates
      * 
-     * @return sorted list by Reach ER
+     * @return Sorted list by Reach ER
      */
     public DLinkedList<Influencer> sortReachER()
     {
@@ -69,7 +68,7 @@ public class InfluencerListCalculator
 
 
     /**
-     * insertion sort method that is customizable given a list and a specific
+     * Insertion sort method that is customizable given a list and a specific
      * comparator
      * 
      * @param list
@@ -77,7 +76,7 @@ public class InfluencerListCalculator
      * @param comparator
      *            the comparator with specific criteria of how the list should
      *            be sorted
-     * @return the final sorted influencerList
+     * @return The final sorted influencerList
      */
     private DLinkedList<Influencer> insertionSort(
         DLinkedList<Influencer> list,
@@ -112,44 +111,43 @@ public class InfluencerListCalculator
             curr = curr.getNext();
         }
         return influencerList;
-
     }
 
     /**
-     * comparator to sort influencer objects alphabetically by their channel
+     * Comparator to sort influencer objects alphabetically by their channel
      * names
      */
     private class NameComparator
         implements Comparator<Influencer>
     {
         /**
-         * compares two influencer by channel name
+         * Compares two influencers by channel name
          * 
          * @param a
          *            the first influencer
          * @param b
          *            the second influencer
-         * @return an integer positive (a should go before b when sorted),
+         * @return an integer: positive (a should go before b when sorted),
          *             negative (b should go before a when sorted), or zero if
          *             they are equal (no changes will be made to the order.)
          */
         @Override
         public int compare(Influencer a, Influencer b)
         {
-            String nameA = a.getChannelName().toLowerCase();
-            String nameB = b.getChannelName().toLowerCase();
-            if (nameA == null && nameB == null)
+            if (a == null && b == null)
             {
                 return 0;
             }
-            if (nameA == null)
+            else if (a == null)
             {
                 return -1;
             }
-            if (nameB == null)
+            else if (b == null)
             {
                 return 1;
             }
+            String nameA = a.getChannelName().toLowerCase();
+            String nameB = b.getChannelName().toLowerCase();
             if (nameA.equals(nameB))
             {
                 return 0;
@@ -171,26 +169,29 @@ public class InfluencerListCalculator
             {
                 return -1;
             }
-            return 1;
+            else
+            {
+                return 1;
+            }
         }
     }
 
 
     /**
-     * comparator to sort influencer objects highest to lowest based on
+     * Comparator to sort influencer objects highest to lowest based on
      * traditional engagement rate
      */
     private class TradEngagementComparator
         implements Comparator<Influencer>
     {
         /**
-         * compares two influencer by traditional engagement rate
+         * Compares two influencers by traditional engagement rate
          * 
          * @param a
          *            the first influencer
          * @param b
          *            the second influencer
-         * @return an integer postitve (a should go before b when sorted),
+         * @return an integer: positive (a should go before b when sorted),
          *             negative (b should go before a when sorted), or zero if
          *             they are equal (no changes will be made to the order.)
          */
@@ -226,20 +227,20 @@ public class InfluencerListCalculator
 
 
     /**
-     * comparator to sort influencer objects highest to lowest based on reach
+     * Comparator to sort influencer objects highest to lowest based on reach
      * engagement rate
      */
     private class ReachEngagementComparator
         implements Comparator<Influencer>
     {
         /**
-         * compares two influencer by reach engagement rate
+         * Compares two influencers by reach engagement rate
          * 
          * @param a
          *            the first influencer
          * @param b
          *            the second influencer
-         * @return an integer postitve (a should go before b when sorted),
+         * @return an integer: positive (a should go before b when sorted),
          *             negative (b should go before a when sorted), or zero if
          *             they are equal (no changes will be made to the order.)
          */
