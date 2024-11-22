@@ -114,15 +114,6 @@ public class InfluencerListCalculator {
          */
         @Override
         public int compare(Influencer a, Influencer b) {
-            if (a == null && b == null) {
-                return 0;
-            }
-            else if (a == null) {
-                return -1;
-            }
-            else if (b == null) {
-                return 1;
-            }
             String nameA = a.getChannelName().toLowerCase();
             String nameB = b.getChannelName().toLowerCase();
             if (nameA.equals(nameB)) {
@@ -163,15 +154,6 @@ public class InfluencerListCalculator {
          */
         @Override
         public int compare(Influencer a, Influencer b) {
-            if (a == null && b == null) {
-                return 0;
-            }
-            else if (a == null) {
-                return -1;
-            }
-            else if (b == null) {
-                return 1;
-            }
             if (a.calculateTradEngagement() < b.calculateTradEngagement()) {
                 return 1;
             }
@@ -201,15 +183,6 @@ public class InfluencerListCalculator {
          */
         @Override
         public int compare(Influencer a, Influencer b) {
-            if (a == null && b == null) {
-                return 0;
-            }
-            else if (a == null) {
-                return -1;
-            }
-            else if (b == null) {
-                return 1;
-            }
             if (a.calculateReachEngagement() < b.calculateReachEngagement()) {
                 return 1;
             }
