@@ -29,8 +29,12 @@ public class InfluencerTest
     private Influencer influencer9;
     private Influencer influencer10;
 
-
     // ~ Constructors ..........................................................
+
+    // ----------------------------------------------------------
+    /**
+     * Sets up the fields in the test class
+     */
     public void setUp()
     {
         influencer1 = new Influencer(
@@ -113,7 +117,7 @@ public class InfluencerTest
             30,
             20,
             30);
-        
+
     }
     // ~Public Methods ........................................................
 
@@ -194,10 +198,7 @@ public class InfluencerTest
      */
     public void testCalculateTradEngagement()
     {
-        assertEquals(
-            influencer1.calculateTradEngagement(),
-            166.66,
-            0.01);
+        assertEquals(influencer1.calculateTradEngagement(), 166.66, 0.01);
         assertEquals(influencer2.calculateTradEngagement(), -1.0, 0.01);
         assertEquals(influencer3.calculateTradEngagement(), -1.0, 0.01);
         assertEquals(influencer4.calculateTradEngagement(), -1.0, 0.01);
@@ -211,10 +212,7 @@ public class InfluencerTest
      */
     public void testCalculateReachEngagement()
     {
-        assertEquals(
-            influencer1.calculateReachEngagement(),
-            166.66,
-            0.01);
+        assertEquals(influencer1.calculateReachEngagement(), 166.66, 0.01);
         assertEquals(influencer2.calculateReachEngagement(), -1.0, 0.01);
         assertEquals(influencer4.calculateReachEngagement(), -1.0, 0.01);
         assertEquals(influencer5.calculateReachEngagement(), -1.0, 0.01);
@@ -230,10 +228,10 @@ public class InfluencerTest
     {
         assertTrue(influencer1.equals(influencer1));
         assertFalse(influencer1.equals(null));
-        
+
         String s = "";
         assertFalse(influencer1.equals(s));
-        
+
         assertFalse(influencer1.equals(influencer2));
         assertFalse(influencer1.equals(influencer3));
         assertFalse(influencer1.equals(influencer4));
@@ -243,7 +241,6 @@ public class InfluencerTest
         assertFalse(influencer1.equals(influencer8));
         assertFalse(influencer1.equals(influencer9));
         assertTrue(influencer1.equals(influencer10));
-
 
     }
 }
