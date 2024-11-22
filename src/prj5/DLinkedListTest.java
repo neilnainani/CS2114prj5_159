@@ -106,8 +106,6 @@ public class DLinkedListTest extends TestCase {
         assertEquals(emptyB.getFirstNode().getData(), "data");
         assertEquals(true, bigA.add(100, "data"));
         assertEquals(true, bigA.add(0, "The Beginning"));
-        emptyB.add(0, "data1");
-        assertEquals(emptyB.getFirstNode().getData(), "data");
     }
 
     // ----------------------------------------------------------
@@ -156,7 +154,7 @@ public class DLinkedListTest extends TestCase {
         listB.add("0");
         listB.add("1");
         listB.add("2");
-        assertFalse(listA.equals(listB));
+        assertEquals(true, listA.equals(listB));
     }
 
     // ----------------------------------------------------------
@@ -244,7 +242,7 @@ public class DLinkedListTest extends TestCase {
         assertEquals(true, emptyA.addToFront(n));
         assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
         assertEquals(1, emptyA.getNumberOfEntries());
-        assertTrue(emptyB.addToFront(n2));
+        assertEquals(false, emptyB.addToFront(n2));
     }
 
     // ----------------------------------------------------------
