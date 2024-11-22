@@ -72,6 +72,12 @@ public class InfluencerListTest extends student.TestCase {
         comList.add(new Influencer("Combined", "User 2", "Channel 2", 100, 100,
             100, 100));
         assertEquals(testList.getCombinedList(), comList);
+        InfluencerList nullListA = new InfluencerList(null, null, null);
+        assertEquals(null, nullListA.getCombinedList());
+        InfluencerList nullListB = new InfluencerList(comList, null, comList);
+        assertEquals(null, nullListB.getCombinedList());
+        InfluencerList nullListC = new InfluencerList(comList, comList, null);
+        assertEquals(null, nullListC.getCombinedList());
     }
 
 }

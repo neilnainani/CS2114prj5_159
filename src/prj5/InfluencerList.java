@@ -36,7 +36,7 @@ public class InfluencerList {
         OneList = OList;
         TwoList = TwList;
         ThreeList = TrList;
-        combineMonths();
+        CombinedList = combineMonths();
     }
 
     /**
