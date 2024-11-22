@@ -21,10 +21,13 @@ public class InfluencerListCalculatorTest
         influencerList = new DLinkedList<>();
         influencerList.add(
             new Influencer("January", "UserA", "abc", 100, 2000, 300, 4000));
+
         influencerList.add(
             new Influencer("January", "UserB", "ghi", 700, 400, 390, 5000));
+
         influencerList.add(
             new Influencer("January", "UserC", "jki", 200, 800, 700, 90000));
+
         influencerList.add(
             new Influencer("January", "UserD", "def", 400, 300, 500, 2000));
 
@@ -157,5 +160,62 @@ public class InfluencerListCalculatorTest
         assertEquals("gh", sorted.get(2).getChannelName());
         assertEquals("ghi", sorted.get(3).getChannelName());
         assertEquals("ghiA", sorted.get(4).getChannelName());
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * tests how the sortName() method handles null entries.
+     */
+    public void testNullName()
+    {
+        influencerList.add(null);
+        calc = new InfluencerListCalculator(influencerList);
+        DLinkedList<Influencer> sorted = calc.sortName();
+        assertEquals("abc", sorted.get(0).getChannelName());
+        assertNull(sorted.get(4));
+        influencerList.add(null);
+        calc = new InfluencerListCalculator(influencerList);
+        DLinkedList<Influencer> sorted2 = calc.sortName();
+        assertNull(sorted2.get(4));
+        assertNull(sorted2.get(5));
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * tests how the sortTradER() method handles null entries.
+     */
+    public void testNullTrad()
+    {
+        influencerList.add(null);
+        calc = new InfluencerListCalculator(influencerList);
+        DLinkedList<Influencer> sorted = calc.sortTradER();
+        assertEquals("def", sorted.get(0).getChannelName());
+        assertNull(sorted.get(4));
+        influencerList.add(null);
+        calc = new InfluencerListCalculator(influencerList);
+        DLinkedList<Influencer> sorted2 = calc.sortTradER();
+        assertNull(sorted2.get(4));
+        assertNull(sorted2.get(5));
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * tests how the sortReachER() method handles null entries.
+     */
+    public void testNullReach()
+    {
+        influencerList.add(null);
+        calc = new InfluencerListCalculator(influencerList);
+        DLinkedList<Influencer> sorted = calc.sortReachER();
+        assertEquals("def", sorted.get(0).getChannelName());
+        assertNull(sorted.get(4));
+        influencerList.add(null);
+        calc = new InfluencerListCalculator(influencerList);
+        DLinkedList<Influencer> sorted2 = calc.sortReachER();
+        assertNull(sorted2.get(4));
+        assertNull(sorted2.get(5));
     }
 }

@@ -129,7 +129,7 @@ public class InfluencerListCalculator
          *            the first influencer
          * @param b
          *            the second influencer
-         * @return an integer postitve (a should go before b when sorted),
+         * @return an integer positive (a should go before b when sorted),
          *             negative (b should go before a when sorted), or zero if
          *             they are equal (no changes will be made to the order.)
          */
@@ -138,6 +138,18 @@ public class InfluencerListCalculator
         {
             String nameA = a.getChannelName().toLowerCase();
             String nameB = b.getChannelName().toLowerCase();
+            if (nameA == null && nameB == null)
+            {
+                return 0;
+            }
+            if (nameA == null)
+            {
+                return -1;
+            }
+            if (nameB == null)
+            {
+                return 1;
+            }
             if (nameA.equals(nameB))
             {
                 return 0;
@@ -159,10 +171,7 @@ public class InfluencerListCalculator
             {
                 return -1;
             }
-            else
-            {
-                return 1;
-            }
+            return 1;
         }
     }
 
@@ -188,6 +197,18 @@ public class InfluencerListCalculator
         @Override
         public int compare(Influencer a, Influencer b)
         {
+            if (a == null && b == null)
+            {
+                return 0;
+            }
+            else if (a == null)
+            {
+                return -1;
+            }
+            else if (b == null)
+            {
+                return 1;
+            }
             if (a.calculateTradEngagement() < b.calculateTradEngagement())
             {
                 return 1;
@@ -225,6 +246,18 @@ public class InfluencerListCalculator
         @Override
         public int compare(Influencer a, Influencer b)
         {
+            if (a == null && b == null)
+            {
+                return 0;
+            }
+            else if (a == null)
+            {
+                return -1;
+            }
+            else if (b == null)
+            {
+                return 1;
+            }
             if (a.calculateReachEngagement() < b.calculateReachEngagement())
             {
                 return 1;
