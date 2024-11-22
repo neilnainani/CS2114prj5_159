@@ -243,17 +243,13 @@ public class Influencer
         {
             return true;
         }
-        if (!getChannelName().equals(((Influencer)other).getChannelName())
+        return !(!getChannelName().equals(((Influencer)other).getChannelName())
             || !getMonth().equals(((Influencer)other).getMonth())
             || !getUsername().equals(((Influencer)other).getUsername())
             || getLikes() != ((Influencer)other).getLikes()
             || getFollowers() != ((Influencer)other).getFollowers()
             || getComments() != ((Influencer)other).getComments()
-            || getViews() != ((Influencer)other).getViews())
-        {
-            return false;
-        }
-        return true;
+            || getViews() != ((Influencer)other).getViews());
     }
 
 }
