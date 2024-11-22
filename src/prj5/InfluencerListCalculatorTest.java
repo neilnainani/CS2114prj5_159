@@ -108,11 +108,13 @@ public class InfluencerListCalculatorTest
     public void testSameReach()
     {
         influencerList.add(
-            new Influencer("January", "UserE", "klm", 500, 400, 500, 2000));
+            new Influencer("January", "UserE", "klm", 400, 300, 500, 2000));
         calc = new InfluencerListCalculator(influencerList);
         DLinkedList<Influencer> sorted = calc.sortReachER();
-        assertEquals("klm", sorted.get(0).getChannelName());
-        assertEquals("def", sorted.get(1).getChannelName());
+        assertEquals("klm", sorted.get(1).getChannelName());
+        assertEquals("def", sorted.get(0).getChannelName());
+        assertEquals("ghi", sorted.get(2).getChannelName());
+        
     }
 
 
@@ -122,11 +124,12 @@ public class InfluencerListCalculatorTest
     public void testSameTrad()
     {
         influencerList.add(
-            new Influencer("January", "UserE", "klm", 200, 300, 500, 2000));
+            new Influencer("January", "UserE", "klm", 700, 400, 390, 5000));
         calc = new InfluencerListCalculator(influencerList);
         DLinkedList<Influencer> sorted = calc.sortTradER();
-        assertEquals("def", sorted.get(0).getChannelName());
+        assertEquals("ghi", sorted.get(1).getChannelName());
         assertEquals("klm", sorted.get(2).getChannelName());
+        assertEquals("jki", sorted.get(3).getChannelName());
     }
 
 
