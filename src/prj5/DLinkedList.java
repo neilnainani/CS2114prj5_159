@@ -285,7 +285,7 @@ public class DLinkedList<T> {
             firstNode = n;
             lastNode = firstNode;
         }
-        if (firstNode != null && firstNode.getData() != null) {
+        if (firstNode != null) {
             firstNode.setPrev(n);
             n.setNext(firstNode);
         }

@@ -65,6 +65,15 @@ public class InfluencerListTest extends student.TestCase {
      */
     public void testCombinedList() {
         DLinkedList<Influencer> comList = new DLinkedList<Influencer>();
+        InfluencerList tempList = new InfluencerList(janList, febList, null);
+        assertNull(tempList.getCombinedList());
+        tempList = new InfluencerList(janList, null, marchList);
+        assertNull(tempList.getCombinedList());
+        tempList = new InfluencerList(null, febList, marchList);
+        assertNull(tempList.getCombinedList());
+        tempList = new InfluencerList(null, null, null);
+        assertNull(tempList.getCombinedList());
+
         comList
             .add(new Influencer("Combined", "User 0", "Channel 0", 2, 1, 2, 2));
         comList.add(

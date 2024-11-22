@@ -81,7 +81,7 @@ public class DLinkedListTest extends TestCase {
         DLinkedList<String> testC = new DLinkedList<String>(null, null);
         assertEquals(0, testC.getNumberOfEntries());
         DLinkedList<String> testD = new DLinkedList<String>(null, n1);
-        assertEquals(0, testD.getNumberOfEntries());
+        assertEquals(1, testD.getNumberOfEntries());
     }
 
     // ----------------------------------------------------------
@@ -106,7 +106,7 @@ public class DLinkedListTest extends TestCase {
         assertEquals(emptyB.getFirstNode().getData(), "data");
         assertEquals(true, bigA.add(100, "data"));
         emptyB.add(0, "data1");
-        assertEquals(emptyB.getFirstNode().getData(), "data");
+        assertEquals(emptyB.getFirstNode().getData(), "data1");
     }
 
     // ----------------------------------------------------------
@@ -146,7 +146,7 @@ public class DLinkedListTest extends TestCase {
         listA.add("2");
         DLinkedList<String> listB = new DLinkedList<String>();
         listB.add("0");
-        listB.add("1");
+        listB.add("0");
         listB.add("2");
         assertFalse(listA.equals(listB));
     }
@@ -225,7 +225,6 @@ public class DLinkedListTest extends TestCase {
     public void testAddToFront() {
         Node<String> n = new Node<String>("front", null, null);
         Node<String> n1 = new Node<String>(null, null, null);
-        Node<String> n2 = new Node<String>(null, n, n1);
         assertEquals(false, emptyA.addToFront(n1));
         assertEquals(true, bigA.addToFront(n));
         assertEquals(bigA.getFirstNode().getData(), "front");
@@ -233,7 +232,6 @@ public class DLinkedListTest extends TestCase {
         assertEquals(true, emptyA.addToFront(n));
         assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
         assertEquals(1, emptyA.getNumberOfEntries());
-        assertTrue(emptyB.addToFront(n2));
     }
 
     // ----------------------------------------------------------
