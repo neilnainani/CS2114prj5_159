@@ -151,9 +151,12 @@ public class InfluencerListCalculatorTest
     {
         influencerList.add(
             new Influencer("January", "UserE", "ghiA", 700, 400, 390, 5000));
+        influencerList.add(
+            new Influencer("January", "UserE", "gh", 700, 400, 390, 5000));
         calc = new InfluencerListCalculator(influencerList);
         DLinkedList<Influencer> sorted = calc.sortName();
-        assertEquals("ghi", sorted.get(2).getChannelName());
-        assertEquals("ghiA", sorted.get(3).getChannelName());
+        assertEquals("gh", sorted.get(2).getChannelName());
+        assertEquals("ghi", sorted.get(3).getChannelName());
+        assertEquals("ghiA", sorted.get(4).getChannelName());
     }
 }
