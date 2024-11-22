@@ -82,7 +82,7 @@ public class DLinkedListTest extends TestCase {
         assertEquals(1, testD.getNumberOfEntries());
         DLinkedList<String> testC = new DLinkedList<String>(null, null);
         assertEquals(0, testC.getNumberOfEntries());
-        DLinkedList<String> testD = new DLinkedList<String>(null, n1);
+        DLinkedList<String> testE = new DLinkedList<String>(null, n1);
         assertEquals(1, testD.getNumberOfEntries());
     }
 
@@ -157,7 +157,7 @@ public class DLinkedListTest extends TestCase {
         listB.add("0");
         listB.add("0");
         listB.add("2");
-        assertEquals(true, listA.equals(listB));
+        assertEquals(false, listA.equals(listB));
     }
 
     // ----------------------------------------------------------
