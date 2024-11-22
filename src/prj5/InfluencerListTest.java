@@ -15,49 +15,49 @@ package prj5;
  */
 public class InfluencerListTest extends student.TestCase {
     private InfluencerList testList;
-    private DLinkedList<Influencer> JanList;
-    private DLinkedList<Influencer> FebList;
-    private DLinkedList<Influencer> MarchList;
+    private DLinkedList<Influencer> janList;
+    private DLinkedList<Influencer> febList;
+    private DLinkedList<Influencer> marchList;
 
     /**
      * Set up test cases
      */
     public void setUp() {
-        JanList = new DLinkedList<Influencer>();
-        JanList
+        janList = new DLinkedList<Influencer>();
+        janList
             .add(new Influencer("January", "User 0", "Channel 0", 1, 1, 1, 1));
-        FebList = new DLinkedList<Influencer>();
-        FebList
+        febList = new DLinkedList<Influencer>();
+        febList
             .add(new Influencer("February", "User 0", "Channel 0", 1, 1, 1, 1));
-        FebList.add(
+        febList.add(
             new Influencer("February", "User 1", "Channel 1", 10, 10, 10, 10));
-        MarchList = new DLinkedList<Influencer>();
-        MarchList.add(
+        marchList = new DLinkedList<Influencer>();
+        marchList.add(
             new Influencer("March", "User 1", "Channel 1", 10, 10, 10, 10));
-        MarchList.add(new Influencer("January", "User 2", "Channel 2", 100, 100,
+        marchList.add(new Influencer("January", "User 2", "Channel 2", 100, 100,
             100, 100));
-        testList = new InfluencerList(JanList, FebList, MarchList);
+        testList = new InfluencerList(janList, febList, marchList);
     }
 
     /**
      * Tests getOneList method
      */
     public void testGetOneList() {
-        assertEquals(testList.getOneList(), JanList);
+        assertEquals(testList.getOneList(), janList);
     }
 
     /**
      * Tests getTwoList method
      */
     public void testGetTwoList() {
-        assertEquals(testList.getTwoList(), FebList);
+        assertEquals(testList.getTwoList(), febList);
     }
 
     /**
      * Tests getThreeList method
      */
     public void testGetThreeList() {
-        assertEquals(testList.getThreeList(), MarchList);
+        assertEquals(testList.getThreeList(), marchList);
     }
 
     /**
@@ -66,9 +66,9 @@ public class InfluencerListTest extends student.TestCase {
     public void testCombinedList() {
         DLinkedList<Influencer> comList = new DLinkedList<Influencer>();
         comList
-            .add(new Influencer("Combined", "User 0", "Channel 0", 2, 2, 2, 2));
+            .add(new Influencer("Combined", "User 0", "Channel 0", 2, 1, 2, 2));
         comList.add(
-            new Influencer("Combined", "User 1", "Channel 1", 20, 20, 20, 20));
+            new Influencer("Combined", "User 1", "Channel 1", 20, 10, 20, 20));
         comList.add(new Influencer("Combined", "User 2", "Channel 2", 100, 100,
             100, 100));
         assertEquals(testList.getCombinedList(), comList);

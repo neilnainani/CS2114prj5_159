@@ -53,7 +53,7 @@ public class ProjectRunner {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
                 if (influencer.calculateTradEngagement() == -1) {
-                    System.out.println("traditional: na");
+                    System.out.println("traditional: N/A");
                 }
                 else {
                     System.out.println("traditional: " + (Math.round(
@@ -71,7 +71,7 @@ public class ProjectRunner {
                 Influencer influencer = currentNode.getData();
                 System.out.println(influencer.getChannelName());
                 if (influencer.calculateReachEngagement() == -1) {
-                    System.out.println("reach: na");
+                    System.out.println("reach: N/A");
                 }
                 else {
                     System.out.println("reach: " + (Math.round(

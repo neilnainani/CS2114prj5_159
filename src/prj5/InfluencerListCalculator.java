@@ -33,6 +33,8 @@ public class InfluencerListCalculator {
 
     /**
      * sorts the influencerList alphabetically by the channel names
+     * 
+     * @return Sorted list by names
      */
     public DLinkedList<Influencer> sortName() {
         return insertionSort(influencerList, new NameComparator());
@@ -41,6 +43,8 @@ public class InfluencerListCalculator {
 
     /**
      * sorts the influencerList highest to lowest by traditional engagment rates
+     * 
+     * @return sorted list by Traditional ER
      */
     public DLinkedList<Influencer> sortTradER() {
         return insertionSort(influencerList, new TradEngagementComparator());
@@ -48,6 +52,8 @@ public class InfluencerListCalculator {
 
     /**
      * sorts the influencerList highest to lowest by reach engagment rates
+     * 
+     * @return sorted list by Reach ER
      */
     public DLinkedList<Influencer> sortReachER() {
         return insertionSort(influencerList, new ReachEngagementComparator());

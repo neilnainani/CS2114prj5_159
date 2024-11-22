@@ -10,24 +10,21 @@ import student.TestCase;
 
 // -------------------------------------------------------------------------
 /**
- *  This class tests all the methods in DLinkedList
+ * This class tests all the methods in DLinkedList
  * 
- *  @author Neil Nainani (neilnainani)
- *  @version Nov 20, 2024
+ * @author Neil Nainani (neilnainani)
+ * @version Nov 20, 2024
  */
-public class DLinkedListTest extends TestCase
-{
-    //~ Fields ................................................................
+public class DLinkedListTest extends TestCase {
+    // ~ Fields ................................................................
     /**
-     * emptyA an empty DLinkedList used for testing
-     * emptyB an empty DLinkedList used for testing
-     * smallA a small DLinkedList used for testing
-     * smallB a small DLinkedList used for testing
-     * bigA a big DLinkedlist used for testing
-     * bigB a big DLinkedList used for testing
-     * nullString a String that is null that's used for testing
+     * emptyA an empty DLinkedList used for testing emptyB an empty DLinkedList
+     * used for testing smallA a small DLinkedList used for testing smallB a
+     * small DLinkedList used for testing bigA a big DLinkedlist used for
+     * testing bigB a big DLinkedList used for testing nullString a String that
+     * is null that's used for testing
      */
-    
+
     private DLinkedList<String> emptyA;
     private DLinkedList<String> emptyB;
     private DLinkedList<String> smallA;
@@ -35,7 +32,6 @@ public class DLinkedListTest extends TestCase
     private DLinkedList<String> bigA;
     private DLinkedList<String> bigB;
     private String nullString;
-
 
     /**
      * Initializes 2 empty lists, 2 lists with a small number of items, and 2
@@ -66,10 +62,11 @@ public class DLinkedListTest extends TestCase
         for (int i = 0; i < 100; i++) {
             bigB.add("sport" + (99 - i));
         }
-        
+
         // to be explicit
         nullString = null;
     }
+
     // ----------------------------------------------------------
     /**
      * This method tests one of the constructors of the DLinkedList class
@@ -86,6 +83,7 @@ public class DLinkedListTest extends TestCase
         DLinkedList<String> testC = new DLinkedList<String>(null, null);
         assertEquals(0, testC.getNumberOfEntries());
     }
+
     // ----------------------------------------------------------
     /**
      * This method tests the add() method
@@ -108,8 +106,10 @@ public class DLinkedListTest extends TestCase
         assertEquals(emptyB.getFirstNode().getData(), "data");
         assertEquals(true, bigA.add(100, "data"));
         assertEquals(true, bigA.add(0, "The Beginning"));
+        emptyB.add(0, "data1");
+        assertEquals(emptyB.getFirstNode().getData(), "data");
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the clear() method
@@ -120,7 +120,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(null, bigB.getFirstNode().getData());
         assertEquals(null, bigB.getLastNode().getData());
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the equals() method
@@ -148,8 +148,17 @@ public class DLinkedListTest extends TestCase
         bigA.removeBack();
         bigA.add(63, ".");
         assertEquals(false, bigA.equals(bigB));
+        DLinkedList<String> listA = new DLinkedList<String>();
+        listA.add("0");
+        listA.add("1");
+        listA.add("2");
+        DLinkedList<String> listB = new DLinkedList<String>();
+        listB.add("0");
+        listB.add("1");
+        listB.add("2");
+        assertFalse(listA.equals(listB));
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the get() method
@@ -160,7 +169,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(null, bigA.get(-1));
         assertEquals(null, smallA.get(5));
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the indexOf() method
@@ -170,7 +179,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(smallA.indexOf("swimming"), 1);
         assertEquals(bigB.indexOf("not in the list"), -1);
     }
-    
+
     /**
      * This method tests the remove() method
      */
@@ -186,7 +195,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(true, smallA.remove(1));
         assertEquals("gymnastics", smallA.get(1));
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the getNumberOfEntries()
@@ -196,7 +205,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(100, bigA.getNumberOfEntries());
         assertEquals(3, smallB.getNumberOfEntries());
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the getFirstNode() method
@@ -205,7 +214,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(smallA.getFirstNode().getData(), "soccer");
         assertEquals(null, emptyA.getFirstNode().getData());
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the getLastNode() method
@@ -216,7 +225,7 @@ public class DLinkedListTest extends TestCase
         emptyA.add("one");
         assertEquals(emptyA.getLastNode(), emptyA.getLastNode());
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the addToFront() method
@@ -224,18 +233,20 @@ public class DLinkedListTest extends TestCase
     public void testAddToFront() {
         Node<String> n = new Node<String>("front", null, null);
         Node<String> n1 = new Node<String>(null, null, null);
+        Node<String> n2 = new Node<String>(null, n, n1);
         assertEquals(false, emptyA.addToFront(n1));
-        Node<String> n2 = smallA.getFirstNode();
+        Node<String> n3 = smallA.getFirstNode();
         assertEquals(true, smallA.addToFront(n));
-        assertEquals(n2, smallA.getFirstNode().getNext());
+        assertEquals(n3, smallA.getFirstNode().getNext());
         assertEquals(true, bigA.addToFront(n));
         assertEquals(bigA.getFirstNode().getData(), "front");
         assertEquals(101, bigA.getNumberOfEntries());
         assertEquals(true, emptyA.addToFront(n));
         assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
         assertEquals(1, emptyA.getNumberOfEntries());
+        assertTrue(emptyB.addToFront(n2));
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the addToBack() method
@@ -249,7 +260,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(emptyA.getFirstNode(), emptyA.getLastNode());
         assertEquals(1, emptyA.getNumberOfEntries());
     }
-    
+
     // ----------------------------------------------------------
     /**
      * This method tests the removeFront() method
@@ -261,7 +272,7 @@ public class DLinkedListTest extends TestCase
         emptyA.removeFront();
         assertEquals(0, emptyA.getNumberOfEntries());
     }
-    
+
     /**
      * This method tests the removeBack() method
      */
@@ -272,7 +283,7 @@ public class DLinkedListTest extends TestCase
         emptyA.removeBack();
         assertEquals(0, emptyA.getNumberOfEntries());
     }
-    
+
     /**
      * This method tests the isEmpty() method
      */
@@ -280,6 +291,7 @@ public class DLinkedListTest extends TestCase
         assertEquals(true, emptyA.isEmpty());
         assertEquals(false, bigB.isEmpty());
     }
+
     /**
      * This method tests the contains() method
      */
@@ -289,6 +301,6 @@ public class DLinkedListTest extends TestCase
         assertEquals(false, emptyA.contains(null));
         assertEquals(true, smallB.contains("swimming"));
         assertEquals(false, smallA.contains("sports"));
-        
+
     }
 }
