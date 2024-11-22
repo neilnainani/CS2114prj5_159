@@ -15,7 +15,6 @@ package prj5;
  */
 public class InfluencerListCalculatorTest extends student.TestCase {
     private InfluencerListCalculator calc;
-    private DLinkedList<Influencer> influencerList;
     private InfluencerList inflList;
 
     /**
@@ -23,7 +22,7 @@ public class InfluencerListCalculatorTest extends student.TestCase {
      * for the test class.
      */
     public void setUp() {
-        influencerList = new DLinkedList<Influencer>();
+        DLinkedList<Influencer> influencerList = new DLinkedList<Influencer>();
         influencerList.add(
             new Influencer("January", "UserA", "abc", 100, 2000, 300, 4000));
         // 20 10
