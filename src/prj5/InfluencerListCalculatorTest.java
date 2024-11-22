@@ -20,17 +20,13 @@ public class InfluencerListCalculatorTest
     {
         influencerList = new DLinkedList<>();
         influencerList.add(
-            new Influencer("January", "UserA", "abc", 100, 2000, 300, 4000)); // 20
-                                                                              // 10
+            new Influencer("January", "UserA", "abc", 100, 2000, 300, 4000));
         influencerList.add(
-            new Influencer("January", "UserB", "ghi", 700, 400, 390, 5000)); // 298
-                                                                             // 21
+            new Influencer("January", "UserB", "ghi", 700, 400, 390, 5000));
         influencerList.add(
-            new Influencer("January", "UserC", "jki", 200, 800, 700, 90000)); // 111
-                                                                              // 1
+            new Influencer("January", "UserC", "jki", 200, 800, 700, 90000));
         influencerList.add(
-            new Influencer("January", "UserD", "def", 400, 300, 500, 2000)); // 300
-                                                                             // 45
+            new Influencer("January", "UserD", "def", 400, 300, 500, 2000));
 
         calc = new InfluencerListCalculator(influencerList);
     }
@@ -114,7 +110,7 @@ public class InfluencerListCalculatorTest
         assertEquals("klm", sorted.get(1).getChannelName());
         assertEquals("def", sorted.get(0).getChannelName());
         assertEquals("ghi", sorted.get(2).getChannelName());
-        
+
     }
 
 
@@ -154,8 +150,8 @@ public class InfluencerListCalculatorTest
     {
         influencerList.add(
             new Influencer("January", "UserE", "ghiA", 700, 400, 390, 5000));
-        influencerList.add(
-            new Influencer("January", "UserE", "gh", 700, 400, 390, 5000));
+        influencerList
+            .add(new Influencer("January", "UserE", "gh", 700, 400, 390, 5000));
         calc = new InfluencerListCalculator(influencerList);
         DLinkedList<Influencer> sorted = calc.sortName();
         assertEquals("gh", sorted.get(2).getChannelName());
