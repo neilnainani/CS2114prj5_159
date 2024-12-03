@@ -66,27 +66,27 @@ public class GUIProjectWindow {
         sortByEngagement.onClick(this, "clickedQuit");
 
         tradEngagement = new Button("Traditional Engagement Rate");
-        window.addButton(tradEngagement, WindowSide.NORTH);
+        window.addButton(tradEngagement, WindowSide.EAST);
         tradEngagement.onClick(this, "clickedTradEngagement");
 
         reachEngagement = new Button("Reach Engagement Rate");
-        window.addButton(reachEngagement, WindowSide.NORTH);
+        window.addButton(reachEngagement, WindowSide.EAST);
         reachEngagement.onClick(this, "clickedReachEngagement");
 
         january = new Button("January");
-        window.addButton(january, WindowSide.NORTH);
+        window.addButton(january, WindowSide.SOUTH);
         january.onClick(this, "clickedJanuary");
 
         february = new Button("February");
-        window.addButton(february, WindowSide.NORTH);
+        window.addButton(february, WindowSide.SOUTH);
         february.onClick(this, "clickedFebruary");
 
         march = new Button("March");
-        window.addButton(march, WindowSide.NORTH);
+        window.addButton(march, WindowSide.SOUTH);
         march.onClick(this, "clickedMarch");
 
         firstQuarter = new Button("First Quarter (Jan - March");
-        window.addButton(firstQuarter, WindowSide.NORTH);
+        window.addButton(firstQuarter, WindowSide.SOUTH);
         firstQuarter.onClick(this, "clickedFirstQuarter");
 
         graphColors[0] = new Color(51, 92, 103); // blue
