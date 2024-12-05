@@ -38,7 +38,7 @@ public class ProjectRunner {
         }
 
         boolean showConsole = true;
-        boolean showGUI = false;
+        boolean showGUI = true;
 
         InfluencerList influencerList = filer.readInputFile();
 
@@ -82,10 +82,9 @@ public class ProjectRunner {
             }
         }
         if (showGUI) {
-            /*
-             * TODO: For final Submission - Should have the GUI display for the
-             * input data
-             */
+            InfluencerListCalculator calc = new InfluencerListCalculator(
+                influencerList.getCombinedList());
+            GUIProjectWindow window = new GUIProjectWindow(calc);
         }
     }
 

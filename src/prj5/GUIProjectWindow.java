@@ -21,7 +21,7 @@ import cs2.WindowSide;
  * @version 2024.12.03
  */
 public class GUIProjectWindow {
-    private InfluencerList influencerRankinds;
+    private InfluencerListCalculator influencerRankinds;
     private Window window;
     private Shape[] graphShapes;
     private static Color[] graphColors = new Color[8];
@@ -47,7 +47,7 @@ public class GUIProjectWindow {
      * @param iFL an InfluencerList that contains 3 different months of
      *            influencers
      */
-    public GUIProjectWindow(InfluencerList iFL) {
+    public GUIProjectWindow(InfluencerListCalculator iFL) {
         window = new Window("Social Media Vis");
         window.setSize((int) (500 * DISPLAY_FACTOR),
             (int) (500 * DISPLAY_FACTOR));
