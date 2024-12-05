@@ -18,7 +18,8 @@ import student.IOHelper;
  * @author Farhan Uddin
  * @version Nov 21, 2024
  */
-public class InputFileReader {
+public class InputFileReader
+{
 
     private InfluencerList iList;
     private String fileName;
@@ -36,11 +37,14 @@ public class InputFileReader {
     /**
      * Create a new InputFileReader object.
      * 
-     * @param fileName name of file being read
+     * @param fileName
+     *            name of file being read
      */
-    public InputFileReader(String fileName) {
+    public InputFileReader(String fileName)
+    {
         this.fileName = fileName;
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -48,7 +52,8 @@ public class InputFileReader {
      * 
      * @return influencer list with file data
      */
-    public InfluencerList readInputFile() {
+    public InfluencerList readInputFile()
+    {
         Scanner inStream = IOHelper.createScanner(fileName);
         inStream.nextLine();
 
@@ -58,7 +63,8 @@ public class InputFileReader {
 
         String[] monthLists = new String[3];
         int monthListsSize = 0;
-        while (inStream.hasNextLine()) {
+        while (inStream.hasNextLine())
+        {
             String line = inStream.nextLine().replaceAll(" ", "");
             String[] values = line.split(",");
             String month = values[0];
@@ -69,46 +75,92 @@ public class InputFileReader {
             int comments = toInt(values[8]);
             int views = toInt(values[9]);
             boolean found = false;
-            for (int i = 0; i < monthListsSize; i++) {
-                if (monthLists[i].equals(month)) {
+            for (int i = 0; i < monthListsSize; i++)
+            {
+                if (monthLists[i].equals(month))
+                {
                     found = true;
-                    switch (i) {
+                    switch (i)
+                    {
                         case 0:
-                            firstList.add(new Influencer(month, username,
-                                channel, likes, followers, comments, views));
+                            firstList.add(
+                                new Influencer(
+                                    month,
+                                    username,
+                                    channel,
+                                    likes,
+                                    followers,
+                                    comments,
+                                    views));
                             break;
                         case 1:
-                            secondList.add(new Influencer(month, username,
-                                channel, likes, followers, comments, views));
+                            secondList.add(
+                                new Influencer(
+                                    month,
+                                    username,
+                                    channel,
+                                    likes,
+                                    followers,
+                                    comments,
+                                    views));
                             break;
                         case 2:
-                            thirdList.add(new Influencer(month, username,
-                                channel, likes, followers, comments, views));
+                            thirdList.add(
+                                new Influencer(
+                                    month,
+                                    username,
+                                    channel,
+                                    likes,
+                                    followers,
+                                    comments,
+                                    views));
                             break;
                     }
 
                 }
             }
-            if (!found && monthListsSize < InfluencerList.MONTHS) {
-                for (int i = 0; i < MONTHS.length; i++) {
-                    if (month.equals(MONTHS[i])) {
+            if (!found && monthListsSize < InfluencerList.MONTHS)
+            {
+                for (int i = 0; i < MONTHS.length; i++)
+                {
+                    if (month.equals(MONTHS[i]))
+                    {
                         monthLists[monthListsSize] = month;
                         monthListsSize++;
-                        switch (monthListsSize - 1) {
+                        switch (monthListsSize - 1)
+                        {
                             case 0:
                                 firstList.add(
-                                    new Influencer(month, username, channel,
-                                        likes, followers, comments, views));
+                                    new Influencer(
+                                        month,
+                                        username,
+                                        channel,
+                                        likes,
+                                        followers,
+                                        comments,
+                                        views));
                                 break;
                             case 1:
                                 secondList.add(
-                                    new Influencer(month, username, channel,
-                                        likes, followers, comments, views));
+                                    new Influencer(
+                                        month,
+                                        username,
+                                        channel,
+                                        likes,
+                                        followers,
+                                        comments,
+                                        views));
                                 break;
                             case 2:
                                 thirdList.add(
-                                    new Influencer(month, username, channel,
-                                        likes, followers, comments, views));
+                                    new Influencer(
+                                        month,
+                                        username,
+                                        channel,
+                                        likes,
+                                        followers,
+                                        comments,
+                                        views));
                                 break;
                         }
                     }
@@ -121,12 +173,16 @@ public class InputFileReader {
         return iList;
     }
 
-    private int toInt(String str) {
 
-        try {
+    private int toInt(String str)
+    {
+
+        try
+        {
             return Integer.parseInt(str);
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             return 0;
         }
     }

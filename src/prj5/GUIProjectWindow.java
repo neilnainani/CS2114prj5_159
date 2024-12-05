@@ -1,7 +1,7 @@
 // Virginia Tech Honor Code Pledge = new
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
-// I will not lie, cheat, or steal, nor will I 
+// I will not lie, cheat, or steal, nor will I
 // accept the actions of those who do.
 // -- Noah Chen (noahc20)
 
@@ -17,8 +17,10 @@ import cs2.*;
  * @author Noah Chen (noahc20)
  * @version 2024.12.03
  */
-public class GUIProjectWindow {
-    private InfluencerListCalculator influencerRankinds;
+public class GUIProjectWindow
+{
+    private InfluencerList influencerList;
+    private InfluencerListCalculator influencerRankings;
     private Window window;
     private Shape[] graphShapes;
     private static Color[] graphColors = new Color[8];
@@ -41,15 +43,18 @@ public class GUIProjectWindow {
     /**
      * Constructor that creates the window and buttons
      * 
-     * @param iFL an InfluencerList that contains 3 different months of
+     * @param iFL
+     *            an InfluencerList that contains 3 different months of
      *            influencers
      */
-    public GUIProjectWindow(InfluencerListCalculator iFL) {
+    public GUIProjectWindow(InfluencerList iFL)
+    {
         window = new Window("Social Media Vis");
-        window.setSize((int) (500 * DISPLAY_FACTOR),
-            (int) (500 * DISPLAY_FACTOR));
+        window
+            .setSize((int)(500 * DISPLAY_FACTOR), (int)(500 * DISPLAY_FACTOR));
 
-        influencerRankinds = iFL;
+        influencerList = iFL;
+        influencerRankings = new InfluencerListCalculator(iFL);
         sortByChannel = new Button("Sort by Channel Name");
         window.addButton(sortByChannel, WindowSide.NORTH);
         sortByChannel.onClick(this, "clickedSortChannel");
@@ -100,61 +105,122 @@ public class GUIProjectWindow {
         drawShapes();
     }
 
-    public void drawShapes() {
+
+    public void drawShapes()
+    {
         // TODO Auto-generated method stub
 
     }
 
-    public void updateGraph() {
+
+    public void updateGraph()
+    {
         // TODO Auto-generated method stub
 
     }
 
-    public void updateText() {
+
+    public void updateText()
+    {
         // TODO Auto-generated method stub
 
     }
 
-    public void clickedSortChannel() {
 
+    public void clickedSortChannel()
+    {
+        influencerRankings.sortName();
+        updateGraph();
+        drawShapes();
+        updateText();
     }
 
-    public void clickedSortEngage() {
 
+    public void clickedSortEngage()
+    {
+        influencerRankings.sortTradER();
+        updateGraph();
+        drawShapes();
+        updateText();
     }
+
 
     // ----------------------------------------------------------
     /**
-     * This method is what occurs when the "Quit" button is pressed,
-     * the program stops running.
-     * @param button is usually the quit button.
+     * This method is what occurs when the "Quit" button is pressed, the program
+     * stops running.
+     * 
+     * @param button
+     *            is usually the quit button.
      */
-    public void clickedQuit(Button button) {
+    public void clickedQuit(Button button)
+    {
         System.exit(0);
     }
 
-    public void clickedTradEngagement() {
+
+    public void clickedTradEngagement()
+    {
+        influencerRankings.sortTradER();
+        updateGraph();
+        drawShapes();
+        updateText();
 
     }
 
-    public void clickedReachEngagement() {
+
+    public void clickedReachEngagement()
+    {
+        influencerRankings.sortReachER();
+        updateGraph();
+        drawShapes();
+        updateText();
 
     }
 
-    public void clickedJanuary() {
+
+    public void clickedJanuary()
+    {
+        influencerList.getOneList();
+        influencerRankings =
+            new InfluencerListCalculator(influencerList.getOneList());
+        updateGraph();
+        drawShapes();
+        updateText();
 
     }
 
-    public void clickedFebruary() {
 
+    public void clickedFebruary()
+    {
+        influencerList.getTwoList();
+        influencerRankings =
+            new InfluencerListCalculator(influencerList.getTwoList());
+        updateGraph();
+        drawShapes();
+        updateText();
     }
 
-    public void clickedMarch() {
 
+    public void clickedMarch()
+    {
+        influencerList.getThreeList();
+        influencerRankings =
+            new InfluencerListCalculator(influencerList.getThreeList());
+        updateGraph();
+        drawShapes();
+        updateText();
     }
 
-    public void clickedFirstQuarter() {
 
+    public void clickedFirstQuarter()
+    {
+        influencerList.getCombinedList();
+        influencerRankings =
+            new InfluencerListCalculator(influencerList.getCombinedList());
+        updateGraph();
+        drawShapes();
+        updateText();
     }
 
 }
