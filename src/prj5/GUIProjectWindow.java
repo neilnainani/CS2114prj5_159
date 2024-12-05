@@ -9,10 +9,7 @@ package prj5;
 
 import java.awt.Color;
 
-import cs2.Button;
-import cs2.Shape;
-import cs2.Window;
-import cs2.WindowSide;
+import cs2.*;
 
 /**
  * Displays the window
@@ -63,7 +60,7 @@ public class GUIProjectWindow {
 
         quit = new Button("Quit");
         window.addButton(quit, WindowSide.NORTH);
-        sortByEngagement.onClick(this, "clickedQuit");
+        quit.onClick(this, "clickedQuit");
 
         tradEngagement = new Button("Traditional Engagement Rate");
         window.addButton(tradEngagement, WindowSide.EAST);
@@ -103,54 +100,60 @@ public class GUIProjectWindow {
         drawShapes();
     }
 
-    private void drawShapes() {
+    public void drawShapes() {
         // TODO Auto-generated method stub
 
     }
 
-    private void updateGraph() {
+    public void updateGraph() {
         // TODO Auto-generated method stub
 
     }
 
-    private void updateText() {
+    public void updateText() {
         // TODO Auto-generated method stub
 
     }
 
-    private void clickedSortChannel() {
+    public void clickedSortChannel() {
 
     }
 
-    private void clickedSortEngage() {
+    public void clickedSortEngage() {
 
     }
 
-    private void clickedQuit() {
+    // ----------------------------------------------------------
+    /**
+     * This method is what occurs when the "Quit" button is pressed,
+     * the program stops running.
+     * @param button is usually the quit button.
+     */
+    public void clickedQuit(Button button) {
+        System.exit(0);
+    }
+
+    public void clickedTradEngagement() {
 
     }
 
-    private void clickedTradEngagement() {
+    public void clickedReachEngagement() {
 
     }
 
-    private void clickedReachEngagement() {
+    public void clickedJanuary() {
 
     }
 
-    private void clickedJanuary() {
+    public void clickedFebruary() {
 
     }
 
-    private void clickedFebruary() {
+    public void clickedMarch() {
 
     }
 
-    private void clickedMarch() {
-
-    }
-
-    private void clickedFirstQuarter() {
+    public void clickedFirstQuarter() {
 
     }
 
