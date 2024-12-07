@@ -51,7 +51,7 @@ public class GUIProjectWindow
     {
         window = new Window("Social Media Vis");
         window
-            .setSize((int)(500 * DISPLAY_FACTOR), (int)(500 * DISPLAY_FACTOR));
+            .setSize((int)(700 * DISPLAY_FACTOR), (int)(500 * DISPLAY_FACTOR));
 
         influencerList = iFL;
         influencerRankings = new InfluencerListCalculator(iFL.getCombinedList());
@@ -68,11 +68,11 @@ public class GUIProjectWindow
         quit.onClick(this, "clickedQuit");
 
         tradEngagement = new Button("Traditional Engagement Rate");
-        window.addButton(tradEngagement, WindowSide.EAST);
+        window.addButton(tradEngagement, WindowSide.WEST);
         tradEngagement.onClick(this, "clickedTradEngagement");
 
         reachEngagement = new Button("Reach Engagement Rate");
-        window.addButton(reachEngagement, WindowSide.EAST);
+        window.addButton(reachEngagement, WindowSide.WEST);
         reachEngagement.onClick(this, "clickedReachEngagement");
 
         january = new Button("January");
