@@ -152,7 +152,7 @@ public class GUIProjectWindow
 
         for (int i = 0; i < influencers.getNumberOfEntries(); i++)
         {
-            Influencer influencer = influencers.getNode(i);
+            Influencer influencer = influencers.get(i);
             double engagementRate;
             if (er.equals("1"))
             {
@@ -166,8 +166,8 @@ public class GUIProjectWindow
             int height = (int)(engagementRate * 10);
             Color shapeColor = graphColors[i % graphColors.length];
 
-            Shape shape = new Shape(graph_x, 100, BAR_WIDTH, height);
-            shape.setColor(shapeColor);
+            Shape shape = new Shape(graph_x, 100, BAR_WIDTH, height, shapeColor);
+            //shape.setColor(shapeColor);
             graphShapes[i] = shape;
 
             String formattedRate = dc.format(engagementRate);
