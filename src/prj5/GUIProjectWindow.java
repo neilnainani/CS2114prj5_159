@@ -127,6 +127,10 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method draws the shapes in the GUI
+     */
     public void drawShapes()
     {
         DLinkedList<Influencer> influencers = influencerList.getCombinedList();
@@ -183,6 +187,10 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method updates the graph in the GUI
+     */
     public void updateGraph()
     {
         window.removeAllShapes();
@@ -190,6 +198,10 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method updates the text in the GUI
+     */
     public void updateText()
     {
         if (month != null)
@@ -243,6 +255,12 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method is what is executed when the Sort  by Channel Name
+     *  button is clicked
+     * @param button the Sort Channel button
+     */
     public void clickedSortChannel(Button button)
     {
         sortERString = "0";
@@ -253,6 +271,12 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method is what is executed when the Sort by Engagement Rate
+     *  button is clicked
+     * @param button the Sort by Engagement Rate button
+     */
     public void clickedSortEngage(Button button)
     {
         sortERString = "1";
@@ -276,7 +300,13 @@ public class GUIProjectWindow
         System.exit(0);
     }
 
-
+    
+    // ----------------------------------------------------------
+    /**
+     * This method is what is executed when the Traditional Engagement Rate
+     * button is clicked
+     * @param button the Traditional Engagement Rate button
+     */
     public void clickedTradEngagement(Button button)
     {
         er = "0";
@@ -288,6 +318,12 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method is what is executed when the Reach Engagement Rate button is
+     * clicked
+     * @param button the Reach Engagement Rate button
+     */
     public void clickedReachEngagement(Button button)
     {
         er = "1";
@@ -299,6 +335,11 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method is what is executed when the January button is clicked
+     * @param button the January button
+     */
     public void clickedJanuary(Button button)
     {
         month = "j";
@@ -312,6 +353,11 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method is what is executed when the February button is clicked
+     * @param button the February button
+     */
     public void clickedFebruary(Button button)
     {
         month = "f";
@@ -324,6 +370,11 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This method is what is executed when the March button is clicked
+     * @param button the March button
+     */
     public void clickedMarch(Button button)
     {
         month = "m";
@@ -336,6 +387,11 @@ public class GUIProjectWindow
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * This button is what is executed when the First Quarter button is clicked
+     * @param button the First Quarter button
+     */
     public void clickedFirstQuarter(Button button)
     {
         month = "a";
