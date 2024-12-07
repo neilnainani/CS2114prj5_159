@@ -102,11 +102,11 @@ public class GUIProjectWindow
         window.addButton(firstQuarter, WindowSide.SOUTH);
         firstQuarter.onClick(this, "clickedFirstQuarter");
 
-        textMonth = new TextShape(50, 50, "");
+        textMonth = new TextShape(10, 10, "");
 
-        textER = new TextShape(50, 70, "");
+        textER = new TextShape(10, 30, "");
 
-        sortER = new TextShape(50, 90, "");
+        sortER = new TextShape(10, 50, "");
 
         graphColors[0] = new Color(51, 92, 103); // blue
         graphColors[1] = new Color(224, 159, 62); // yellow
@@ -163,20 +163,27 @@ public class GUIProjectWindow
                 engagementRate = influencer.calculateTradEngagement();
             }
 
-            int height = (int)(engagementRate * 10);
+            int height = (int)(engagementRate * 0.14);
+            if (er.equals("1")) {
+                height = (int)(engagementRate * 2);
+            }
             Color shapeColor = graphColors[i % graphColors.length];
 
-            Shape shape = new Shape(graph_x, 100, BAR_WIDTH, height, shapeColor);
+            Shape shape = new Shape(graph_x, 550 - height, BAR_WIDTH, height, shapeColor);
             //shape.setColor(shapeColor);
             graphShapes[i] = shape;
 
             String formattedRate = dc.format(engagementRate);
             String labelText =
-                influencer.getChannelName() + "\n" + formattedRate;
-            TextShape label = new TextShape(graph_x, 105 + height, labelText);
-            window.addShape(label);
+                influencer.getChannelName();
+            String rateText = formattedRate;
+            TextShape label = new TextShape(graph_x, 570, labelText);
+            TextShape label2 = new TextShape(graph_x, 590, rateText);
 
-            graph_x += BAR_WIDTH + 10;
+            window.addShape(label);
+            window.addShape(label2);
+
+            graph_x += BAR_WIDTH + 100;
         }
 
         for (Shape shape : graphShapes)
