@@ -39,6 +39,13 @@ public class GUIProjectWindow
     private Button february;
     private Button march;
     private Button firstQuarter;
+    
+    private String month;
+    private TextShape textMonth;
+    private TextShape textER;
+    private TextShape sortER;
+    private String er;
+    private String sortERString;
 
     /**
      * Constructor that creates the window and buttons
@@ -90,6 +97,15 @@ public class GUIProjectWindow
         firstQuarter = new Button("First Quarter (Jan - March");
         window.addButton(firstQuarter, WindowSide.SOUTH);
         firstQuarter.onClick(this, "clickedFirstQuarter");
+        
+        textMonth = new TextShape(50, 50, "");
+        //window.addShape(textMonth);
+        
+        textER = new TextShape(50, 70, "");
+        //window.addShape(textER);
+        
+        sortER = new TextShape(50, 90, "");
+        //window.addShape(sortER);
 
         graphColors[0] = new Color(51, 92, 103); // blue
         graphColors[1] = new Color(224, 159, 62); // yellow
@@ -123,12 +139,49 @@ public class GUIProjectWindow
     public void updateText()
     {
         // TODO Auto-generated method stub
-
+        if (month != null) {
+            if (month.equals("j")) {
+                textMonth.setText("January");
+            }
+            else if (month.equals("f")) {
+                textMonth.setText("February");
+            }
+            else if (month.equals("m")) {
+                textMonth.setText("March");
+            }
+            else if (month.equals("a")) {
+                textMonth.setText("First Quarter (Jan - March)");
+            }
+        }
+        
+        if (sortERString != null) {
+            if (sortERString.equals("0")) {
+                sortER.setText("Sorting by Channel Name");
+            }
+            else if (sortERString.equals("1")) {
+                sortER.setText("Sorting by Engagement Rate");
+            }
+        }
+        
+        if (er != null) {
+            
+            if (er.equals("0")) {
+                textER.setText("Traditional Engagement Rate");
+            }
+            else if (er.equals("1")) {
+                textER.setText("Reach Engagement Rate");
+            }
+        }
+        
+        window.addShape(textMonth);
+        window.addShape(sortER);
+        window.addShape(textER);
     }
 
 
-    public void clickedSortChannel()
+    public void clickedSortChannel(Button button)
     {
+        sortERString = "0";
         influencerRankings.sortName();
         updateGraph();
         drawShapes();
@@ -136,8 +189,9 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedSortEngage()
+    public void clickedSortEngage(Button button)
     {
+        sortERString = "1";
         influencerRankings.sortTradER();
         updateGraph();
         drawShapes();
@@ -159,8 +213,9 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedTradEngagement()
+    public void clickedTradEngagement(Button button)
     {
+        er = "0";
         influencerRankings.sortTradER();
         updateGraph();
         drawShapes();
@@ -169,8 +224,9 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedReachEngagement()
+    public void clickedReachEngagement(Button button)
     {
+        er = "1";
         influencerRankings.sortReachER();
         updateGraph();
         drawShapes();
@@ -179,8 +235,9 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedJanuary()
+    public void clickedJanuary(Button button)
     {
+        month = "j";
         influencerList.getOneList();
         influencerRankings =
             new InfluencerListCalculator(influencerList.getOneList());
@@ -191,8 +248,9 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedFebruary()
+    public void clickedFebruary(Button button)
     {
+        month = "f";
         influencerList.getTwoList();
         influencerRankings =
             new InfluencerListCalculator(influencerList.getTwoList());
@@ -202,8 +260,9 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedMarch()
+    public void clickedMarch(Button button)
     {
+        month = "m";
         influencerList.getThreeList();
         influencerRankings =
             new InfluencerListCalculator(influencerList.getThreeList());
@@ -213,8 +272,9 @@ public class GUIProjectWindow
     }
 
 
-    public void clickedFirstQuarter()
+    public void clickedFirstQuarter(Button button)
     {
+        month = "a";
         influencerList.getCombinedList();
         influencerRankings =
             new InfluencerListCalculator(influencerList.getCombinedList());
