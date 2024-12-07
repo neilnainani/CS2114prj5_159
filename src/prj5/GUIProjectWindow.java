@@ -8,7 +8,7 @@
 package prj5;
 
 import java.awt.Color;
-
+import java.text.DecimalFormat;
 import cs2.*;
 
 /**
@@ -39,13 +39,16 @@ public class GUIProjectWindow
     private Button february;
     private Button march;
     private Button firstQuarter;
-    
+
     private String month;
     private TextShape textMonth;
     private TextShape textER;
     private TextShape sortER;
     private String er;
     private String sortERString;
+
+    private static final String PATTERN;
+    private static final DecimalFormat dc;
 
     /**
      * Constructor that creates the window and buttons
@@ -61,7 +64,8 @@ public class GUIProjectWindow
             .setSize((int)(700 * DISPLAY_FACTOR), (int)(500 * DISPLAY_FACTOR));
 
         influencerList = iFL;
-        influencerRankings = new InfluencerListCalculator(iFL.getCombinedList());
+        influencerRankings =
+            new InfluencerListCalculator(iFL.getCombinedList());
         sortByChannel = new Button("Sort by Channel Name");
         window.addButton(sortByChannel, WindowSide.NORTH);
         sortByChannel.onClick(this, "clickedSortChannel");
@@ -97,15 +101,15 @@ public class GUIProjectWindow
         firstQuarter = new Button("First Quarter (Jan - March");
         window.addButton(firstQuarter, WindowSide.SOUTH);
         firstQuarter.onClick(this, "clickedFirstQuarter");
-        
+
         textMonth = new TextShape(50, 50, "");
-        //window.addShape(textMonth);
-        
+        // window.addShape(textMonth);
+
         textER = new TextShape(50, 70, "");
-        //window.addShape(textER);
-        
+        // window.addShape(textER);
+
         sortER = new TextShape(50, 90, "");
-        //window.addShape(sortER);
+        // window.addShape(sortER);
 
         graphColors[0] = new Color(51, 92, 103); // blue
         graphColors[1] = new Color(224, 159, 62); // yellow
@@ -116,63 +120,128 @@ public class GUIProjectWindow
         graphColors[6] = new Color(71, 19, 19); // dark red
         graphColors[7] = new Color(255, 255, 255); // white
 
+        month = "a";
+        sortERString = "0";
+        er = "0";
+
+        PATTERN = "#.#";
+        dc = new DecimalFormat(PATTERN);
+
         updateText();
-        updateGraph();
         drawShapes();
     }
 
 
     public void drawShapes()
     {
-        // TODO Auto-generated method stub
+        DLinkedList<Influencer> influencers = influencerList.getCombinedList();
+        graphShapes = new Shape[influencers.getNumberOfEntries()];
+        graph_x = 50;
+
+        if (month.equals("j"))
+        {
+            influencers = influencerList.getOneList();
+        }
+        else if (month.equals("f"))
+        {
+            influencers = influencerList.getTwoList();
+        }
+        else if (month.equals("m"))
+        {
+            influencers = influencerList.getThreeList();
+        }
+
+        for (int i = 0; i < influencers.getNumberOfEntries(); i++)
+        {
+            Influencer influencer = influencers.getNode(i);
+            double engagementRate;
+            if (er.equals("1"))
+            {
+                engagementRate = influencer.calculateReachEngagement();
+            }
+            else
+            {
+                engagementRate = influencer.calculateTradEngagement();
+            }
+
+            int height = (int)(engagementRate * 10);
+            Color shapeColor = graphColors[i % graphColors.length];
+
+            Shape shape = new Shape(graph_x, 100, BAR_WIDTH, height);
+            shape.setColor(shapeColor);
+            graphShapes[i] = shape;
+
+            String formattedRate = dc.format(engagementRate);
+            String labelText =
+                influencer.getChannelName() + "\n" + formattedRate;
+            TextShape label = new TextShape(graph_x, 105 + height, labelText);
+            window.addShape(label);
+
+            graph_x += BAR_WIDTH + 10;
+        }
+
+        for (Shape shape : graphShapes)
+        {
+            window.addShape(shape);
+        }
 
     }
 
 
     public void updateGraph()
     {
-        // TODO Auto-generated method stub
-
+        window.removeAllShapes();
+        drawShapes();
     }
 
 
     public void updateText()
     {
-        // TODO Auto-generated method stub
-        if (month != null) {
-            if (month.equals("j")) {
+        if (month != null)
+        {
+            if (month.equals("j"))
+            {
                 textMonth.setText("January");
             }
-            else if (month.equals("f")) {
+            else if (month.equals("f"))
+            {
                 textMonth.setText("February");
             }
-            else if (month.equals("m")) {
+            else if (month.equals("m"))
+            {
                 textMonth.setText("March");
             }
-            else if (month.equals("a")) {
+            else if (month.equals("a"))
+            {
                 textMonth.setText("First Quarter (Jan - March)");
             }
         }
-        
-        if (sortERString != null) {
-            if (sortERString.equals("0")) {
+
+        if (sortERString != null)
+        {
+            if (sortERString.equals("0"))
+            {
                 sortER.setText("Sorting by Channel Name");
             }
-            else if (sortERString.equals("1")) {
+            else if (sortERString.equals("1"))
+            {
                 sortER.setText("Sorting by Engagement Rate");
             }
         }
-        
-        if (er != null) {
-            
-            if (er.equals("0")) {
+
+        if (er != null)
+        {
+
+            if (er.equals("0"))
+            {
                 textER.setText("Traditional Engagement Rate");
             }
-            else if (er.equals("1")) {
+            else if (er.equals("1"))
+            {
                 textER.setText("Reach Engagement Rate");
             }
         }
-        
+
         window.addShape(textMonth);
         window.addShape(sortER);
         window.addShape(textER);
