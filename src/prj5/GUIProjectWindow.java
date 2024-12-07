@@ -169,7 +169,8 @@ public class GUIProjectWindow
             }
             Color shapeColor = graphColors[i % graphColors.length];
 
-            Shape shape = new Shape(graph_x, 550 - height, BAR_WIDTH, height, shapeColor);
+            Shape shape = new Shape(graph_x, 550 - height, BAR_WIDTH, height, 
+                shapeColor);
             //shape.setColor(shapeColor);
             graphShapes[i] = shape;
 
