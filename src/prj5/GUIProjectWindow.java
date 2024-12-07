@@ -47,8 +47,8 @@ public class GUIProjectWindow
     private String er;
     private String sortERString;
 
-    private static final String PATTERN;
-    private static final DecimalFormat dc;
+    private static final String PATTERN = "#.#";
+    private static final DecimalFormat dc = new DecimalFormat(PATTERN);
 
     /**
      * Constructor that creates the window and buttons
@@ -59,7 +59,7 @@ public class GUIProjectWindow
      */
     public GUIProjectWindow(InfluencerList iFL)
     {
-        window = new Window("Social Media Vis");
+        window = new Window("neilnainani noahc20 farhanuddin cwalk");
         window
             .setSize((int)(700 * DISPLAY_FACTOR), (int)(500 * DISPLAY_FACTOR));
 
@@ -103,13 +103,10 @@ public class GUIProjectWindow
         firstQuarter.onClick(this, "clickedFirstQuarter");
 
         textMonth = new TextShape(50, 50, "");
-        // window.addShape(textMonth);
 
         textER = new TextShape(50, 70, "");
-        // window.addShape(textER);
 
         sortER = new TextShape(50, 90, "");
-        // window.addShape(sortER);
 
         graphColors[0] = new Color(51, 92, 103); // blue
         graphColors[1] = new Color(224, 159, 62); // yellow
@@ -124,8 +121,6 @@ public class GUIProjectWindow
         sortERString = "0";
         er = "0";
 
-        PATTERN = "#.#";
-        dc = new DecimalFormat(PATTERN);
 
         updateText();
         drawShapes();
