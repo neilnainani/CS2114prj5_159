@@ -102,7 +102,7 @@ public class ProjectRunner
         if (showGUI)
         {
             GUIProjectWindow window =
-                new GUIProjectWindow(influencerList.getCombinedList());
+                new GUIProjectWindow(influencerList);
         }
     }
 

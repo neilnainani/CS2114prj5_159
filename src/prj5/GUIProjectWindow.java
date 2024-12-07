@@ -54,7 +54,7 @@ public class GUIProjectWindow
             .setSize((int)(500 * DISPLAY_FACTOR), (int)(500 * DISPLAY_FACTOR));
 
         influencerList = iFL;
-        influencerRankings = new InfluencerListCalculator(iFL);
+        influencerRankings = new InfluencerListCalculator(iFL.getCombinedList());
         sortByChannel = new Button("Sort by Channel Name");
         window.addButton(sortByChannel, WindowSide.NORTH);
         sortByChannel.onClick(this, "clickedSortChannel");
